@@ -11,6 +11,8 @@
 	```
  prints `x-------,` over the notes AAA BBB
  
+ <kbd><img src="images/var-x.png" height="90px"/></kbd>
+ 
 1. ###var-xy
  
 	```
@@ -18,11 +20,15 @@
 	```
  prints `x, y----,` over the notes and so on for `var-xyz`, `var-xyz1`, and `var-xyz12`
  
+ <kbd><img src="images/var-xy.png" height="90px"/></kbd>
+ 
 1. ###var
 	```
 	!var(! y0 AAA BBB !var)!
 	```
  prints `,-------,` over the notes
+ 
+ <kbd><img src="images/var.png" height="90px"/></kbd>
  
 1. ###varcontinues-x
 	```
@@ -30,21 +36,26 @@
 	```
  prints `x---------` over the notes (e.g. for use when a variation extends beyond the end of a staff). *varcontinues-x is intended to pair with varcontinued*
  
+ <kbd><img src="images/varcontinues-x.png" height="90px"/></kbd>
+ 
 1. ###varcontinues
 	```
 	!varcontinues(! y0 AAA BBB !varcontinues)!
 	```
  prints `,---------` over the notes (e.g. for use when a variation extends beyond the end of a staff). *varcontinues is intended to pair with varcontinued*
  
+ <kbd><img src="images/varcontinues.png" height="90px"/></kbd>
+ 
 1. ###varcontinued
 	```
 	!varcontinued(! y0 AAA BBB !varcontinued)!
 	```
  prints `--------,` over the notes (e.g. for use when a variation started before the current staff. *varcontinued is intended to pair with either varcontinues-x or varcontinues*
+ 
+ <kbd><img src="images/varcontinued.png" height="90px"/></kbd>
 
---
-
-Those decorations don't stack nicely. If you need to mark overlapping variations:
+ --
+ Those decorations don't stack nicely. If you need to mark overlapping variations:
 
 1. ###var-x\_stack
 
@@ -52,21 +63,27 @@ Those decorations don't stack nicely. If you need to mark overlapping variations
 	!var-x_stack! !var-y_stack! y0 AAA !var-y_stack)! BBB !var-x_stack)!
 	```
   prints `y----,` over `AAA` and, above that, prints `x---------,` over `AAA BBB`
+ 
+ <kbd><img src="images/var-x_stack.png" height="90px"/></kbd>
   
 1. ###varcont\_stack
 	```
 	!varcont_stack(! !var-x_stack! AAA !var-x_stack)! BBB !varcont_stack)!
 	```
  prints `x----,` over `AAA` and, over that, prints `-----------,` over `AAA BBB`
+ 
+ <kbd><img src="images/varcont_stack-and-chord.png" height="100px"/></kbd>
 
-Note: guitar chords (in `"quotations"`) don't look good with stacked variation
-markers. I have written gchord-like decorations to get around this - include
+
+
+Note: **guitar chords** (in `"quotations"`) **don't look good with stacked variation
+markers. Use the include `hbv-deco-chords.fmt` to get around this** - include
 that .fmt and replace any
 
 	!var..._stack(! y0 "X" ... !var..._stack)!
 	
 with
-
+ 
 	!var..._stack(! y0 !X! y0 ... !var..._stack)!
 
 I recommend always putting a `y0` after the opening deco of a long decoration,
