@@ -175,44 +175,44 @@ variable `<adjust>`, which determines the horizontal placement of the marker lin
 Here's the logic
 
 1. Named, bracketing at end  
-&emsp;deco `var-[x[y[z[1[2]]]]][_stack](`
-&emsp;and
-&emsp;deco `var-[x[y[z[1[2]]]]][_stack])`
-&emsp;&emsp;refer to
-&emsp;&emsp;`/var-x`
-&emsp;&emsp;&emsp;refers to
-&emsp;&emsp;&emsp;`/[#]vars`
-&emsp;&emsp;&emsp;&emsp;refers to
+&emsp;deco `var-[x[y[z[1[2]]]]][_stack](`  
+&emsp;and  
+&emsp;deco `var-[x[y[z[1[2]]]]][_stack])`  
+&emsp;&emsp;refer to  
+&emsp;&emsp;`/var-x`  
+&emsp;&emsp;&emsp;refers to  
+&emsp;&emsp;&emsp;`/[#]vars`  
+&emsp;&emsp;&emsp;&emsp;refers to  
 &emsp;&emsp;&emsp;&emsp;`/variation`
 
-1. Unnamed, bracketing at start and end
-&emsp;deco `var(`
-&emsp;&emsp;refers to
+1. Unnamed, bracketing at start and end  
+&emsp;deco `var(`  
+&emsp;&emsp;refers to  
 &emsp;&emsp;`\unnamedvar`
 
-1. Open, named, extending a little further right than the default
-&emsp;deco `varcontinues-[x[y[z[1[2]]]]](`
-&emsp;and
-&emsp;deco `varcontinues-[x[y[z[1[2]]]]])`
-&emsp;&emsp;refer to
-&emsp;&emsp;`/varconts-a`
-&emsp;&emsp;&emsp;refers to
+1. Open, named, extending a little further right than the default  
+&emsp;deco `varcontinues-[x[y[z[1[2]]]]](`  
+&emsp;and  
+&emsp;deco `varcontinues-[x[y[z[1[2]]]]])`  
+&emsp;&emsp;refer to  
+&emsp;&emsp;`/varconts-a`  
+&emsp;&emsp;&emsp;refers to  
 &emsp;&emsp;&emsp;`/1contvar`
 
-1. Open, unnamed, extending a little further right than the default
-&emsp;deco `varcontinues(`
-&emsp;and
-&emsp;deco `varcontinues)`
-&emsp;&emsp;refer to
+1. Open, unnamed, extending a little further right than the default  
+&emsp;deco `varcontinues(`  
+&emsp;and  
+&emsp;deco `varcontinues)`  
+&emsp;&emsp;refer to  
 &emsp;&emsp;`/varcontsunnamed`
 
-1. Open at left, extending a little further left than the default
-&emsp;deco `varcontinued(`
-&emsp;and
-&emsp;deco `varcontinued)`
-&emsp;and
-&emsp;deco `varcont_stack(`
-&emsp;and
-&emsp;deco `varcont_stack)`
-&emsp;&emsp;refer to
+1. Open at left, extending a little further left than the default  
+&emsp;deco `varcontinued(`  
+&emsp;and  
+&emsp;deco `varcontinued)`  
+&emsp;and  
+&emsp;deco `varcont_stack(`  
+&emsp;and  
+&emsp;deco `varcont_stack)`  
+&emsp;&emsp;refer to  
 &emsp;&emsp;`/varcontd`
