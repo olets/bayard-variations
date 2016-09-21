@@ -1,2 +1,782 @@
 # baylor-variations
 abcm2ps decorations to add support for variation notation modeled after Samuel Baylor's
+
+% Variations Markers for abcm2ps
+% by Henry Bley-Vroman
+% beta September 2012
+% public v1 April 2014
+%
+% This .fmt file contains decos for Jef Moine's abcm2ps music typesetting
+% software. It prints Samuel Baylor-style variations' markers above the staff.
+%
+% ---------------------------------------------
+% USAGE
+%
+% !var-x(! y0 AAA BBB !var-x)!
+%	prints x-------, over the notes AAA BBB
+% !var-xy(! y0 AAA BBB !var-xy)!
+%	prints x, y----, over the notes
+%	and so on for var-xyz, var-xyz1, and var-xyz12
+%
+% !var(! y0 AAA BBB !var)!
+%	prints ,-------, over the notes
+%
+% !varcontinues-x(! y0 AAA BBB !varcontinues-x)!
+%	prints x--------- over the notes
+%	(e.g. for use when a variation extends beyond the end of a staff)
+%	varcontinues-x is intended to pair with varcontinued
+% !varcontinues(! y0 AAA BBB !varcontinues)!
+%	prints ,--------- over the notes
+%	(e.g. for use when a variation extends beyond the end of a staff)
+%	varcontinues is intended to pair with varcontinued
+% !varcontinued(! y0 AAA BBB !varcontinued)!
+%	prints --------, over the notes
+%	(e.g. for use when a variation started before the current staff
+%	varcontinued is intended to pair with either varcontinues-x or varcontinues
+%
+% Those decorations don't stack nicely. If you need to mark overlapping variations:
+% !var-x_stack! !var-y_stack! y0 AAA !var-y_stack)! BBB !var-x_stack)!
+%	prints y----, over AAA and, above that, prints x---------, over AAA BBB
+% !varcont_stack(! !var-x_stack! AAA !var-x_stack)! BBB !varcont_stack)!
+%	prints x----, over AAA and, over that, prints -----------, over AAA BBB
+%
+% Note: guitar chords (in "quotations") don't look good with stacked variation
+% markers. I have written gchord-like decorations to get around this - include
+% that .fmt and replace any
+%	!var..._stack(! y0 "X" ... !var..._stack)!
+% with
+%	!var..._stack(! y0 !X! y0 ... !var..._stack)!
+%
+% I recommend always putting a y0 after the opening deco of a long decoration,
+% e.g. after !var-x(!. It's sometimes a good idea to put one after the closing
+% deco !var-x)! and, in the case of variation markers stacked above guitar chords, after
+% the !X! stackable guitar deco.
+%
+%
+% ---------------------------------------------
+% CUSTOMIZATION
+%
+%	I use Monaco 9 for the label and a thin 60%-black dashed line
+%	-	The font is defined before every occurrence of the postscript command "show"
+%	-	The thickness of the line is defined before every "SLW" (abcm2ps shorthand for
+%		the postscript command "setlinewidth") (default: 0.5)
+%	-	The darkness of the line is defined before every non-zero "setgray" (default: 0.6)
+%	-	The dash is defined before every non-"[]" "setdash" (default: [3 5], which is 3px
+%		of line followed by 5px of space)
+%
+%	The line could be made e.g. solid and black by commenting out all setdash and setgray
+%
+%
+%
+% ---------------------------------------------
+% CONTENTS
+%
+% I've included a lot of decorations, which should cover most needs:
+% • single-letter variables var-a to var-z
+% • single-number variables var-0 to var-9
+% • an asterisk variable var-*
+% • two-letter variables var-ab to var-yz for sequential pairs (e.g. var-bc, not var-ac)
+% • assorted other two-letter variables I've needed
+% • three-letter variables var-abc to var-klm (again, in sequential triplets)
+% • assorted other three-letter variables I've needed
+% • the four-letter variable var-abcd
+% • the five-letter variable var-abcde
+% • single-letter open-ended variables varcontinues-a to varcontinues-f
+% • the unnamed variable var
+% • the open-ended unnamed variable varcontinues
+% • the open-start variable varcontinued
+%
+% • single-letter stackable variables var-a_stack to var-z_stack
+% • single-number stackable variables var-1_stack to var-3_stack
+% • stackable unnamed open-ended variable varcons_stack
+% • stackable open-start variable varcont_stack
+%
+% If that doesn't meet your needs...
+%
+% ---------------------------------------------
+% DESIGN
+%
+% your own. You'll need to add three lines per decoration, within beginps...endps:
+%	/var-[name]{/varname ([marker text] def [1var/[2-5]vars]}!
+%	deco var-[name]( [5 for normal, 7 for stacking] - 17 0 0
+%	deco var-[name]) ["] var-[name] 17 0 0
+%
+%
+% One-Character Example: var-a
+%	/var-a{/varname (a) def 1var}!
+%	deco var-a( 5 - 17 0 0
+%	deco var-a) 5 var-a 17 0 0
+%
+% Two-Character Example: var-ab
+%	/var-a{/varname (a, b) def 2vars}!
+%	deco var-ab( 5 - 17 0 0
+%	deco var-ab) 5 var-ab 17 0 0
+%
+% Three-Character Example: var-abc
+%	/var-abc{/varname (a, b, c) def 3vars}!
+%	deco var-abc( 5 - 17 0 0
+%	deco var-abc) 5 var-abc 17 0 0
+%
+% Four-Character Example: var-abcd
+%	/var-abcd{/varname(a, b, c, d) def 4vars}!
+%	deco var-abcd( 5 - 17 0 0
+%	deco var-abcd) 5 var-abc 17 0 0
+%
+% Five-Character Example: var-abcde
+%	/var-abcde{/varname (a, b, c, d, e) def 5vars}!
+%	deco var-abcde( 5 - 17 0 0
+%	deco var-abcde) 5 var-abcde 17 0 0
+%
+% Custom Example: var-custom
+%	/var-custom{/varname (a. bc!!) def 3vars}!
+%	deco var-custom( 5 - 17 0 0
+%	deco var-custom) 5 var-custom 17 0 0
+%
+% Custom Stackable Example: var-custom2
+%	/var-customstack{/varname (a. bc!!) def 3vars}!
+%	deco var-customstack( 7 - 17 0 0
+%	deco var-customstack) 7 var-customstack 17 0 0
+%
+% (Note, for custom variables, that by default your marker text can be one, four
+% seven, ten, or thirteen characters long (using 1var, 2vars, 3vars, 4vars, and
+% 5vars, respectively). For marker text of other lengths you'll need to customize the
+% variable <adjust>, which determines the horizontal placement of the marker line's start.
+%
+%
+% ---------------------------------------------
+% ARCHITECTURE
+%
+% Here's the logic
+%
+% Named, bracketing at end
+%	deco var-[x[y[z[1[2]]]]][_stack](
+%	and
+%	deco var-[x[y[z[1[2]]]]][_stack])
+%		refer to
+%		/var-x
+%			refers to
+%			/[#]vars
+%				refers to
+%				/variation
+%
+% Unnamed, bracketing at start and end
+%	deco var(
+%		refers to
+%		\unnamedvar
+%
+% Open, named, extending a little further right than the default
+%	deco varcontinues-[x[y[z[1[2]]]]](
+%	and
+%	deco varcontinues-[x[y[z[1[2]]]]])
+%		refer to
+%		/varconts-a
+%			refers to
+%			/1contvar
+%
+% Open, unnamed, extending a little further right than the default
+%	deco varcontinues(
+%	and
+%	deco varcontinues)
+%		refer to
+%		/varcontsunnamed
+%
+% Open at left, extending a little further left than the default
+%	deco varcontinued(
+%	and
+%	deco varcontinued)
+%	and
+%	deco varcont_stack(
+%	and
+%	deco varcont_stack)
+%		refer to
+%		/varcontd
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+beginps
+/variation{
+	0.5 SLW									% sets the heaviness of the marker line
+	exch -10 add exch 2 copy M				% placement
+	5 5 RM
+	.45 setgray								% set darkness line (0=black, 1=white) (for color, replace with "[0-1] [0-1] [0-1] setrgbcolor")
+	/Monaco 9 selectfont varname show M							% prints the name of the var
+	.6 setgray
+	adjust 7 RM								% where to start the line
+											%	(shifts the start of the line, so that it doesn't overlap with the characters)
+	[3 5] 0 setdash							% make line dashed
+	adjust 5 sub sub 0 RL currentpoint stroke M	% draw the line
+											% 	(shortens the line, so that it doesn't extend past the desired point)
+	[] 0 setdash							% reset dash to solid lines
+	3 0 RL 0 -6 RL stroke					% hook at end
+	0 setgray								% reset color to black
+	}!
+/unnamedvar{
+	0.5 SLW									% sets the heaviness of the marker line
+	exch -10 add exch 2 copy M				% placement
+	5 1 RM
+	.6 setgray								% sets the darkness of the line (0=black, 1=white)
+	0 6 RL 3 0 RL stroke					% hook at start
+	M 10 7 RM								% where to start the line
+											%	(shifts the start of the line, so that it doesn't overlap with the characters)
+	[3 5] 0 setdash							% make line dashed
+	5 sub 0 RL currentpoint stroke M		% draw the line
+											%	(shortens the line, so that it doesn't extend past the desired point)
+	[] 0 setdash							% reset dash to solid lines
+	2 0 RM									% placement
+	3 0 RL 0 -6 RL stroke					% hook at end
+	0 setgray								% reset color to black
+	}!
+/varconts{		% a named variation with a slightly long, unhooked marker line
+	0.5 SLW									% sets the heaviness of the marker line
+	exch -10 add exch 2 copy M				% placement
+	5 5 RM
+	.45 setgray								% set darkness line (0=black, 1=white)
+	/Monaco 9 selectfont varname show M							% prints the name of the var
+	.6 setgray								% set darkness line (0=black, 1=white)
+	adjust 7 RM								% where to start the line
+											%  (shifts the start of the line, so that it doesn't overlap with the characters)
+	[3 5] 0 setdash							% make line dashed
+	2 add 0 RL currentpoint stroke M		% draw the line
+											%	(shortens the line, so that it doesn't extend past the desired point)
+	[] 0 setdash							% reset dash to solid lines
+	0 setgray								% reset color to black
+	}!
+/varcontsunnamed{	% an unnamed variation with a slightly long, unhooked marker line
+	0.5 SLW									% sets the heaviness of the marker line
+	exch -10 add exch 2 copy M				% placement
+	5 1 RM
+	.6 setgray								% sets the darkness of the line (0=black, 1=white)
+	0 6 RL 3 0 RL stroke					% hook at start
+	M
+	10 7 RM									% where to start the line
+											% 	(shifts the start of the line, so that it doesn't overlap with the characters)
+	[3 5] 0 setdash							% make line dashed
+	2 add 0 RL currentpoint stroke M		% draw the line
+											% 	(shortens the line, so that it doesn't extend past the desired point)
+	[] 0 setdash							% reset dash to solid lines
+	0 setgray								% reset color to black
+	}!
+/varcontd{	% the continuation of varconts or varcontsunnamed: a hooked line that starts a little early
+	0.5 SLW									% sets the heaviness of the marker line
+	exch -10 add exch 2 copy M				% placement
+	5 5 RM
+	M
+	5 7 RM									% where to start the line
+											% 	(shifts the start of the line, so that it doesn't overlap with the characters)
+	.6 setgray								% sets the darkness of the line (0=black, 1=white)
+	[3 5] 0 setdash							% make line dashed
+	0 add 0 RL currentpoint stroke M		% draw the line
+											% 	(shortens the line, so that it doesn't extend past the desired point)
+	[] 0 setdash							% reset dash to solid lines
+	2 0 RM
+	3 0 RL 0 -6 RL stroke					% hook at end
+	0 setgray
+	}!
+/var-list{
+	exch -10 add exch 2 copy M
+	5 15 RM
+	/Monaco 9 selectfont varname show M
+	}!
+
+% This spacing is for Monaco 9, where variations follow a form equivalent to
+% "^a" ('1var')
+% "^a, b" ('2vars')
+% "^a, b, c" ('3vars')
+% "^a, b, c, d" ('4vars')
+% "^a, b, c, d, e" ('5vars')
+% adjust is 15*(number of variations)
+/1var{/adjust 15 def variation}!
+/2vars{/adjust 30 def variation}!
+/3vars{/adjust 45 def variation}!
+/4vars{/adjust 63 def variation}!
+/5vars{/adjust 80 def variation}!
+
+/lastvars{/adjust 58 def variation}!
+
+/1contvar{/adjust 15 def varconts}!
+/2contvars{/adjust 30 def varconts}!
+/3contvars{/adjust 45 def varconts}!
+/4contvars{/adjust 63 def varconts}!
+/5contvars{/adjust 80 def varconts}!
+
+/varconts-a{/varname (a) def 1contvar}!
+/varconts-b{/varname (b) def 1contvar}!
+/varconts-c{/varname (c) def 1contvar}!
+/varconts-d{/varname (d) def 1contvar}!
+/varconts-e{/varname (e) def 1contvar}!
+/varconts-f{/varname (f) def 1contvar}!
+/varconts-g{/varname (g) def 1contvar}!
+/varconts-h{/varname (h) def 1contvar}!
+
+/var-a{/varname (a) def 1var}!
+/var-b{/varname (b) def 1var}!
+/var-c{/varname (c) def 1var}!
+/var-d{/varname (d) def 1var}!
+/var-e{/varname (e) def 1var}!
+/var-f{/varname (f) def 1var}!
+/var-g{/varname (g) def 1var}!
+/var-h{/varname (h) def 1var}!
+/var-i{/varname (i) def 1var}!
+/var-j{/varname (j) def 1var}!
+/var-k{/varname (k) def 1var}!
+/var-l{/varname (l) def 1var}!
+/var-m{/varname (m) def 1var}!
+/var-n{/varname (n) def 1var}!
+/var-o{/varname (o) def 1var}!
+/var-p{/varname (p) def 1var}!
+/var-q{/varname (q) def 1var}!
+/var-r{/varname (r) def 1var}!
+/var-s{/varname (s) def 1var}!
+/var-t{/varname (t) def 1var}!
+/var-u{/varname (u) def 1var}!
+/var-v{/varname (v) def 1var}!
+/var-w{/varname (w) def 1var}!
+/var-x{/varname (x) def 1var}!
+/var-y{/varname (y) def 1var}!
+/var-z{/varname (z) def 1var}!
+/var-1{/varname (1) def 1var}!
+/var-2{/varname (2) def 1var}!
+/var-3{/varname (3) def 1var}!
+/var-4{/varname (4) def 1var}!
+/var-5{/varname (5) def 1var}!
+/var-6{/varname (6) def 1var}!
+/var-7{/varname (7) def 1var}!
+/var-8{/varname (8) def 1var}!
+/var-9{/varname (9) def 1var}!
+/var-0{/varname (0) def 1var}!
+/var-*{/varname (*) def 1var}!
+
+/var-ab{/varname (a, b) def 2vars}!
+/var-bc{/varname (b, c) def 2vars}!
+/var-cd{/varname (c, d) def 2vars}!
+/var-de{/varname (d, e) def 2vars}!
+/var-ef{/varname (e, f) def 2vars}!
+/var-fg{/varname (f, g) def 2vars}!
+/var-gh{/varname (g, h) def 2vars}!
+/var-hi{/varname (h, i) def 2vars}!
+/var-ij{/varname (i, j) def 2vars}!
+/var-jk{/varname (j, k) def 2vars}!
+/var-kl{/varname (k, l) def 2vars}!
+/var-lm{/varname (l, m) def 2vars}!
+/var-mn{/varname (m, n) def 2vars}!
+/var-no{/varname (n, o) def 2vars}!
+/var-op{/varname (o, p) def 2vars}!
+/var-pq{/varname (p, q) def 2vars}!
+/var-qr{/varname (q, r) def 2vars}!
+/var-rs{/varname (r, s) def 2vars}!
+/var-st{/varname (s, t) def 2vars}!
+/var-tu{/varname (t, u) def 2vars}!
+/var-uv{/varname (u, v) def 2vars}!
+/var-vw{/varname (v, w) def 2vars}!
+/var-wx{/varname (w, x) def 2vars}!
+/var-xy{/varname (x, y) def 2vars}!
+/var-yz{/varname (y, z) def 2vars}!
+/var-z1{/varname (z, 1) def 2vars}!
+/var-12{/varname (1, 2) def 2vars}!
+/var-23{/varname (2, 3) def 2vars}!
+/var-34{/varname (3, 4) def 2vars}!
+
+/var-45{/varname (4, 5) def 2vars}!
+
+/var-abc{/varname (a, b, c) def 3vars}!
+/var-cde{/varname (c, d, e) def 3vars}!
+/var-def{/varname (d, e, f) def 3vars}!
+/var-efg{/varname (e, f, g) def 3vars}!
+/var-fgh{/varname (f, g, h) def 3vars}!
+/var-ghi{/varname (g, h, i) def 3vars}!
+/var-hij{/varname (h, i, j) def 3vars}!
+/var-ijk{/varname (i, j, k) def 3vars}!
+/var-jkl{/varname (j, k, l) def 3vars}!
+/var-klm{/varname (k, l, m) def 3vars}!
+/var-mno{/varname (m, n, o) def 3vars}!
+/var-pqr{/varname (p, q, r) def 3vars}!
+/var-stu{/varname (s, t, u) def 3vars}!
+
+/var-bcd{/varname (b, c, d) def 3vars}!
+/var-cgh{/varname (c, g, h) def 3vars}!
+/var-cdj{/varname (c, d, j) def 3vars}!
+/var-opq{/varname (o, p, q) def 3vars}!
+/var-rst{/varname (r, s, t) def 3vars}!
+/var-tuv{/varname (t, u, v) def 3vars}!
+/var-vwx{/varname (v, w, x) def 3vars}!
+/var-wxy{/varname (w, x, y) def 3vars}!
+
+/var-abcd{/varname(a, b, c, d) def 4vars}!
+/var-efgh{/varname(e, f, g, h) def 4vars}!
+/var-fghi{/varname(f, g, h, i) def 4vars}!
+/var-klmn{/varname(k, l, m, n) def 4vars}!
+/var-lmno{/varname(l, m, n, o) def 4vars}!
+/var-vwxy{/varname(v, w, x, y) def 4vars}!
+/var-wxyz{/varname(w, x, y, z) def 4vars}!
+
+/var-abcde{/varname (a, b, c, d, e) def 5vars}!
+/var-defgh{/varname (d, e, f, g, h) def 5vars}!
+/var-aemno{/varname (a, e, m, n, o) def 5vars}!
+
+/var-is{/varname (i, s) def 2vars}!
+/var-cm{/varname (c, m) def 2vars}!
+/var-bd{/varname (b, d) def 2vars}!
+/var-be{/varname (b, e) def 2vars}!
+/var-pq{/varname (p, q) def 2vars}!
+
+/var-last{/varname (Last time) def lastvars}!
+
+/varlist-a{/varname (a) def var-list}!
+
+endps
+
+%deco var-a 3 varlist-a 17 0 0
+
+% unnamed
+deco var( 7 - 17 0 0
+deco var) 7 unnamedvar 17 0 0
+
+% unnamed, for stacking
+deco var_stack( 5 - 17 0 0
+deco var_stack) 5 unnamedvar 17 0 0
+
+% single character
+deco var-a( 7 - 17 0 0
+deco var-a) 7 var-a 17 0 0
+deco var-b( 7 - 17 0 0
+deco var-b) 7 var-b 17 0 0
+deco var-c( 7 - 17 0 0
+deco var-c) 7 var-c 17 0 0
+deco var-d( 7 - 17 0 0
+deco var-d) 7 var-d 17 0 0
+deco var-e( 7 - 17 0 0
+deco var-e) 7 var-e 17 0 0
+deco var-f( 7 - 17 0 0
+deco var-f) 7 var-f 17 0 0
+deco var-g( 7 - 17 0 0
+deco var-g) 7 var-g 17 0 0
+deco var-h( 7 - 17 0 0
+deco var-h) 7 var-h 17 0 0
+deco var-i( 7 - 17 0 0
+deco var-i) 7 var-i 17 0 0
+deco var-j( 7 - 17 0 0
+deco var-j) 7 var-j 17 0 0
+deco var-k( 7 - 17 0 0
+deco var-k) 7 var-k 17 0 0
+deco var-l( 7 - 17 0 0
+deco var-l) 7 var-l 17 0 0
+deco var-m( 7 - 17 0 0
+deco var-m) 7 var-m 17 0 0
+deco var-n( 7 - 17 0 0
+deco var-n) 7 var-n 17 0 0
+deco var-o( 7 - 17 0 0
+deco var-o) 7 var-o 17 0 0
+deco var-p( 7 - 17 0 0
+deco var-p) 7 var-p 17 0 0
+deco var-q( 7 - 17 0 0
+deco var-q) 7 var-q 17 0 0
+deco var-r( 7 - 17 0 0
+deco var-r) 7 var-r 17 0 0
+deco var-s( 7 - 17 0 0
+deco var-s) 7 var-s 17 0 0
+deco var-t( 7 - 17 0 0
+deco var-t) 7 var-t 17 0 0
+deco var-u( 7 - 17 0 0
+deco var-u) 7 var-u 17 0 0
+deco var-v( 7 - 17 0 0
+deco var-v) 7 var-v 17 0 0
+deco var-w( 7 - 17 0 0
+deco var-w) 7 var-w 17 0 0
+deco var-x( 7 - 17 0 0
+deco var-x) 7 var-x 17 0 0
+deco var-y( 7 - 17 0 0
+deco var-y) 7 var-y 17 0 0
+deco var-z( 7 - 17 0 0
+deco var-z) 7 var-z 17 0 0
+deco var-1( 7 - 17 0 0
+deco var-1) 7 var-1 17 0 0
+deco var-2( 7 - 17 0 0
+deco var-2) 7 var-2 17 0 0
+deco var-3( 7 - 17 0 0
+deco var-3) 7 var-3 17 0 0
+deco var-4( 7 - 17 0 0
+deco var-4) 7 var-4 17 0 0
+deco var-5( 7 - 17 0 0
+deco var-5) 7 var-5 17 0 0
+deco var-6( 7 - 17 0 0
+deco var-6) 7 var-6 17 0 0
+deco var-7( 7 - 17 0 0
+deco var-7) 7 var-7 17 0 0
+deco var-8( 7 - 17 0 0
+deco var-8) 7 var-8 17 0 0
+deco var-9( 7 - 17 0 0
+deco var-9) 7 var-9 17 0 0
+deco var-0( 7 - 17 0 0
+deco var-0) 7 var-0 17 0 0
+deco var-*( 7 - 17 0 0
+deco var-*) 7 var-* 17 0 0
+
+% single character, for stacking
+deco var-a_stack( 5 - 17 0 0
+deco var-a_stack) 5 var-a 17 0 0
+deco var-b_stack( 5 - 17 0 0
+deco var-b_stack) 5 var-b 17 0 0
+deco var-c_stack( 5 - 17 0 0
+deco var-c_stack) 5 var-c 17 0 0
+deco var-d_stack( 5 - 17 0 0
+deco var-d_stack) 5 var-d 17 0 0
+deco var-e_stack( 5 - 17 0 0
+deco var-e_stack) 5 var-e 17 0 0
+deco var-f_stack( 5 - 17 0 0
+deco var-f_stack) 5 var-f 17 0 0
+deco var-g_stack( 5 - 17 0 0
+deco var-g_stack) 5 var-g 17 0 0
+deco var-h_stack( 5 - 17 0 0
+deco var-h_stack) 5 var-h 17 0 0
+deco var-i_stack( 5 - 17 0 0
+deco var-i_stack) 5 var-i 17 0 0
+deco var-j_stack( 5 - 17 0 0
+deco var-j_stack) 5 var-j 17 0 0
+deco var-k_stack( 5 - 17 0 0
+deco var-k_stack) 5 var-k 17 0 0
+deco var-l_stack( 5 - 17 0 0
+deco var-l_stack) 5 var-l 17 0 0
+deco var-m_stack( 5 - 17 0 0
+deco var-m_stack) 5 var-m 17 0 0
+deco var-n_stack( 5 - 17 0 0
+deco var-n_stack) 5 var-n 17 0 0
+deco var-o_stack( 5 - 17 0 0
+deco var-o_stack) 5 var-o 17 0 0
+deco var-p_stack( 5 - 17 0 0
+deco var-p_stack) 5 var-p 17 0 0
+deco var-q_stack( 5 - 17 0 0
+deco var-q_stack) 5 var-q 17 0 0
+deco var-r_stack( 5 - 17 0 0
+deco var-r_stack) 5 var-r 17 0 0
+deco var-s_stack( 5 - 17 0 0
+deco var-s_stack) 5 var-s 17 0 0
+deco var-t_stack( 5 - 17 0 0
+deco var-t_stack) 5 var-t 17 0 0
+deco var-u_stack( 5 - 17 0 0
+deco var-u_stack) 5 var-u 17 0 0
+deco var-v_stack( 5 - 17 0 0
+deco var-v_stack) 5 var-v 17 0 0
+deco var-w_stack( 5 - 17 0 0
+deco var-w_stack) 5 var-w 17 0 0
+deco var-x_stack( 5 - 17 0 0
+deco var-x_stack) 5 var-x 17 0 0
+deco var-y_stack( 5 - 17 0 0
+deco var-y_stack) 5 var-y 17 0 0
+deco var-z_stack( 5 - 17 0 0
+deco var-z_stack) 5 var-z 17 0 0
+deco var-1_stack( 5 - 17 0 0
+deco var-1_stack) 5 var-1 17 0 0
+deco var-2_stack( 5 - 17 0 0
+deco var-2_stack) 5 var-2 17 0 0
+deco var-3_stack( 5 - 17 0 0
+deco var-3_stack) 5 var-3 17 0 0
+deco var-*_stack( 5 - 17 0 0
+deco var-*_stack) 5 var-* 17 0 0
+
+% two-letter / four-character
+deco var-ab( 7 - 17 0 0
+deco var-ab) 7 var-ab 17 0 0
+deco var-bc( 7 - 17 0 0
+deco var-bc) 7 var-bc 17 0 0
+deco var-cd( 7 - 17 0 0
+deco var-cd) 7 var-cd 17 0 0
+deco var-de( 7 - 17 0 0
+deco var-de) 7 var-de 17 0 0
+deco var-ef( 7 - 17 0 0
+deco var-ef) 7 var-ef 17 0 0
+deco var-fg( 7 - 17 0 0
+deco var-fg) 7 var-fg 17 0 0
+deco var-gh( 7 - 17 0 0
+deco var-gh) 7 var-gh 17 0 0
+deco var-hi( 7 - 17 0 0
+deco var-hi) 7 var-hi 17 0 0
+deco var-ij( 7 - 17 0 0
+deco var-ij) 7 var-ij 17 0 0
+deco var-jk( 7 - 17 0 0
+deco var-jk) 7 var-jk 17 0 0
+deco var-kl( 7 - 17 0 0
+deco var-kl) 7 var-kl 17 0 0
+deco var-lm( 7 - 17 0 0
+deco var-lm) 7 var-lm 17 0 0
+deco var-mn( 7 - 17 0 0
+deco var-mn) 7 var-mn 17 0 0
+deco var-no( 7 - 17 0 0
+deco var-no) 7 var-no 17 0 0
+deco var-op( 7 - 17 0 0
+deco var-op) 7 var-op 17 0 0
+deco var-pq( 7 - 17 0 0
+deco var-pq) 7 var-pq 17 0 0
+deco var-qr( 7 - 17 0 0
+deco var-qr) 7 var-qr 17 0 0
+deco var-rs( 7 - 17 0 0
+deco var-rs) 7 var-rs 17 0 0
+deco var-st( 7 - 17 0 0
+deco var-st) 7 var-st 17 0 0
+deco var-tu( 7 - 17 0 0
+deco var-tu) 7 var-tu 17 0 0
+deco var-vw( 7 - 17 0 0
+deco var-vw) 7 var-vw 17 0 0
+deco var-xy( 7 - 17 0 0
+deco var-xy) 7 var-xy 17 0 0
+deco var-yz( 7 - 17 0 0
+deco var-yz( 7 var-yz 17 0 0
+deco var-z1( 7 - 17 0 0
+deco var-z1) 7 var-z1 17 0 0
+
+deco var-wx( 7 - 17 0 0
+deco var-wx) 7 var-wx 17 0 0
+deco var-yz( 7 - 17 0 0
+deco var-yz) 7 var-yz 17 0 0
+deco var-23( 7 - 17 0 0
+deco var-23) 7 var-23 17 0 0
+deco var-45( 7 - 17 0 0
+deco var-45) 7 var-45 17 0 0
+
+% additional non-sequential two-letter/four-character
+deco var-is( 7 - 17 0 0
+deco var-is) 7 var-is 17 0 0
+deco var-cm( 7 - 17 0 0
+deco var-cm) 7 var-cm 17 0 0
+deco var-be( 7 - 17 0 0
+deco var-be) 7 var-be 17 0 0
+deco var-pq( 7 - 17 0 0
+deco var-pq) 7 var-pq 17 0 0
+deco var-bd( 7 - 17 0 0
+deco var-bd) 7 var-bd 17 0 0
+
+% stackable two-letter/four-character
+deco var-bc_stack( 5 - 17 0 0
+deco var-bc_stack) 5 var-bc 17 0 0
+deco var-ef_stack( 5 - 17 0 0
+deco var-ef_stack) 5 var-ef 17 0 0
+deco var-gh_stack( 5 - 17 0 0
+deco var-gh_stack) 5 var-gh 17 0 0
+deco var-ij_stack( 5 - 17 0 0
+deco var-ij_stack) 5 var-ij 17 0 0
+deco var-jk_stack( 5 - 17 0 0
+deco var-jk_stack) 5 var-jk 17 0 0
+deco var-lm_stack( 5 - 17 0 0
+deco var-lm_stack) 5 var-lm 17 0 0
+deco var-no_stack( 5 - 17 0 0
+deco var-no_stack) 5 var-no 17 0 0
+deco var-pq_stack( 5 - 17 0 0
+deco var-pq_stack) 5 var-pq 17 0 0
+deco var-z1_stack( 5 - 17 0 0
+deco var-z1_stack) 5 var-z1 17 0 0
+
+% three-letter/seven-character
+deco var-abc( 7 - 17 0 0
+deco var-abc) 7 var-abc 17 0 0
+deco var-cde( 7 - 17 0 0
+deco var-cde) 7 var-cde 17 0 0
+deco var-def( 7 - 17 0 0
+deco var-def) 7 var-def 17 0 0
+deco var-efg( 7 - 17 0 0
+deco var-efg) 7 var-efg 17 0 0
+deco var-fgh( 7 - 17 0 0
+deco var-fgh) 7 var-fgh 17 0 0
+deco var-ghi( 7 - 17 0 0
+deco var-ghi) 7 var-ghi 17 0 0
+deco var-hij( 7 - 17 0 0
+deco var-hij) 7 var-hij 17 0 0
+deco var-ijk( 7 - 17 0 0
+deco var-ijk) 7 var-ijk 17 0 0
+deco var-jkl( 7 - 17 0 0
+deco var-jkl) 7 var-jkl 17 0 0
+deco var-klm( 7 - 17 0 0
+deco var-klm) 7 var-klm 17 0 0
+
+deco var-mno( 7 - 17 0 0
+deco var-mno) 7 var-mno 17 0 0
+
+deco var-rst( 7 - 17 0 0
+deco var-rst) 7 var-rst 17 0 0
+deco var-stu( 7 - 17 0 0
+deco var-stu) 7 var-stu 17 0 0
+deco var-tuv( 7 - 17 0 0
+deco var-tuv) 7 var-tuv 17 0 0
+
+% stackable three-letter/seven-character
+
+deco var-ghi_stack( 5 - 17 0 0
+deco var-ghi_stack) 5 var-ghi 17 0 0
+deco var-opq_stack( 5 - 17 0 0
+deco var-opq_stack) 5 var-opq 17 0 0
+deco var-stu_stack( 5 - 17 0 0
+deco var-stu_stack) 5 var-stu 17 0 0
+deco var-tuv_stack( 5 - 17 0 0
+deco var-tuv_stack) 5 var-tuv 17 0 0
+deco var-vwx_stack( 5 - 17 0 0
+deco var-vwx_stack) 5 var-vwx 17 0 0
+
+% non-sequential three-letter/seven-character
+deco var-bcd( 7 - 17 0 0
+deco var-bcd) 7 var-bcd 17 0 0
+deco var-cgh( 7 - 17 0 0
+deco var-cgh) 7 var-cgh 17 0 0
+deco var-cdj( 7 - 17 0 0
+deco var-cdj) 7 var-cdj 17 0 0
+
+% four-letter/ten-character
+deco var-abcd( 7 - 17 0 0
+deco var-abcd) 7 var-abcd 17 0 0
+deco var-klmn( 7 - 17 0 0
+deco var-klmn) 7 var-klmn 17 0 0
+deco var-lmno( 7 - 17 0 0
+deco var-lmno) 7 var-lmno 17 0 0
+deco var-vwxy( 7 - 17 0 0
+deco var-vwxy) 7 var-vwxy 17 0 0
+deco var-wxyz( 7 - 17 0 0
+deco var-wxyz) 7 var-wxyz 17 0 0
+
+% stackable four-letter/ten-character
+deco var-efgh_stack( 5 - 17 0 0
+deco var-efgh_stack) 5 var-efgh 17 0 0
+deco var-fghi_stack( 5 - 17 0 0
+deco var-fghi_stack) 5 var-fghi 17 0 0
+
+% five-letter/twelve-character
+deco var-abcde( 7 - 17 0 0
+deco var-abcde) 7 var-abcde 17 0 0
+
+deco var-defgh( 7 - 17 0 0
+deco var-defgh) 7var-defgh 17 0 0
+
+% non-sequential five-letter/twelve-character
+deco var-aemno( 7 - 17 0 0
+deco var-aemno) 7 var-aemno 17 0 0
+
+% open-ended, and open-beginning'd
+deco varcontinued( 7 - 17 0 0
+deco varcontinued) 7 varcontd 17 0 0
+deco varcontinues( 7 - 17 0 0
+deco varcontinues) 7 varcontsunnamed 17 0 0
+deco varcontinues-a( 7 - 17 0 0
+deco varcontinues-a) 7 varconts-a 17 0 0
+deco varcontinues-b( 7 - 17 0 0
+deco varcontinues-b) 7 varconts-b 17 0 0
+deco varcontinues-c( 7 - 17 0 0
+deco varcontinues-c) 7 varconts-c 17 0 0
+deco varcontinues-d( 7 - 17 0 0
+deco varcontinues-d) 7 varconts-d 17 0 0
+deco varcontinues-e( 7 - 17 0 0
+deco varcontinues-e) 7 varconts-e 17 0 0
+deco varcontinues-f( 7 - 17 0 0
+deco varcontinues-f) 7 varconts-f 17 0 0
+deco varcontinues-g( 7 - 17 0 0
+deco varcontinues-g) 7 varconts-g 17 0 0
+deco varcontinues-h( 7 - 17 0 0
+deco varcontinues-h) 7 varconts-h 17 0 0
+
+% stackable open-ended, and open-beginning'd
+deco varcons_stack( 5 - 17 0 0
+deco varcons_stack) 5 varcontsunnamed 17 0 0
+deco varcont_stack( 5 - 17 0 0
+deco varcont_stack) 5 varcontd 17 0 0
+
+deco var-last( 7 - 17 0 0
+deco var-last) 7 var-last 17 0 0
