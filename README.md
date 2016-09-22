@@ -251,3 +251,7 @@ Here's the logic
 &emsp;deco `varcont_stack)`  
 &emsp;&emsp;depend on  
 &emsp;&emsp;`/varcontd`
+
+# License
+
+`bayard-variations` is licensed under the MIT License, with the following additional request: if you make use of it in any publication, commercial or otherwise, credit the author.
