@@ -15,7 +15,7 @@ These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff
 
 --
 
-<a name="Introduction"></a>
+<span id="introduction"></span>
 &nbsp;
 
 For years in my fiddle transcriptions I marked variations with a superscripted letter (in abc, this was `"^a..."`). Finally I came across that exact idea in print in Jeff Todd Titon's [*Old Time Kentucky Fiddle Tunes*](http://www.kentuckypress.com/live/title_detail.php?titleid=1074#.V-Mch5MrKHo). Titon says he "and other scholars" trace the idea back to [Samuel Bayard](https://en.wikipedia.org/wiki/Samuel_Preston_Bayard), in his 1944 *Hill Country Tunes: Instrumental Folk Music of Southwestern Pennsylvania*. Bayard's notation was actually nicer, as it showed exactly which notes were varied (my crop):
@@ -277,7 +277,6 @@ Here's the logic
 
 &nbsp;
 
---
 
 ## License
 
