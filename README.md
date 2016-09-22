@@ -1,6 +1,12 @@
-# baylor-variations
-*abcm2ps decorations to add support for above-the-staff variation notation modeled after Samuel Baylor's*
+# bayard-variations
 
+These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff variation-marking notation to [abc](http://abcnotation.com/).
+
+For years in my fiddle transcriptions I marked variations with a superscripted letter (in abc, this was `"^a..."`). Finally I came across that exact idea in print in Jeff Todd Titon's [*Old Time Kentucky Fiddle Tunes*](http://www.kentuckypress.com/live/title_detail.php?titleid=1074#.V-Mch5MrKHo). Titon says he "and other scholars" trace the idea back to [Samuel Bayard](https://en.wikipedia.org/wiki/Samuel_Preston_Bayard), in his 1944 *Hill Country Tunes: Instrumental Folk Music of Southwestern Pennsylvania*. Bayard's notation was actually nicer, as it showed exactly which notes were varied (my crop):
+
+<kbd><img src="images/bayard.jpg" height="150px"/></kdb>
+
+After I'd been working on PostScript decorations to emulate Bayard for a couple years, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation. The **bayard-variations** are my own expansion on Bayard and Salamon's ideas.
 
 ##USAGE
 
@@ -55,14 +61,15 @@
  <kbd><img src="images/varcontinued.png" height="90px"/></kbd>
 
  --
- Those decorations don't stack nicely. If you need to mark overlapping variations:
+ 
+ ####Those decorations don't stack nicely. If you need to mark overlapping variations:
 
 1. ###var-x\_stack
 
 	```
 	!var-x_stack! !var-y_stack! y0 AAA !var-y_stack)! BBB !var-x_stack)!
 	```
-  prints `y----,` over `AAA` and, above that, prints `x---------,` over `AAA BBB`
+  prints `y----,` over `AAA` and, above that, `x---------,` over `AAA BBB`
  
  <kbd><img src="images/var-x_stack.png" height="90px"/></kbd>
   
@@ -77,7 +84,7 @@
 
 
 Note: **guitar chords** (in `"quotations"`) **don't look good with stacked variation
-markers. Use the include `hbv-deco-chords.fmt` to get around this** - include
+markers. Use the included `hbv-deco-chords.fmt` to get around this** - include
 that .fmt and replace any
 
 	!var..._stack(! y0 "X" ... !var..._stack)!
