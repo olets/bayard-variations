@@ -1,0 +1,51 @@
+% % % % % % % % % % % % % % % % % % % % % % % %
+%
+% test file for baylor-variations.fmt
+%
+% Copyright © 2016 Henry Bley-Vroman
+% MIT license
+%
+% https://github.com/olets/bayard-variations
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
+X:1
+T:"Bayard"-style Variation Notation for abcm2ps
+M:C|
+L:1/8
+K:C
+%
+"_var-a()"\
+!var-a(! y0 AAA BBB !var-a)! |\
+%
+"_var-ab()"\
+!var-ab(! y0 AAA BBB !var-ab)! |\
+%
+"_var()"\
+!var(! y0 AAA BBB !var)! |\
+%
+"_varcontinues-a()"\
+!varcontinues-a(! y0 AAA BBB !varcontinues-a)! |
+%
+%
+%
+"_varcontinued()"\
+!varcontinued(! y0 AAA BBB !varcontinued)! |\
+%
+"_varcontinues()"\
+!varcontinues(! y0 AAA BBB !varcontinues)! |\
+%
+"_var-x_stack()"\
+!var-a_stack(! y0 !var-b_stack(! y0 AAA !var-b_stack)! BBB !var-a_stack)! |\
+%
+"_varcont_stack()\nand var-a_stack()\nand G"\
+!varcont_stack(!!var-a_stack(!y0 AAA !var-a_stack)! !G!BBB !varcont_stack)! |
+%
+%
+w:******% at least one w: line is sometimes required in the tune to keep variation decos from printing below the staff. a bug, but easy to work around
+%
+%
+%
+W:
+W:by Henry Bley-Vroman
+W:https://github.com/olets/bayard-variations
