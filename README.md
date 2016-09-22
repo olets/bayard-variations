@@ -2,6 +2,8 @@
 
 These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff variation-marking notation to [abc](http://abcnotation.com/).
 
+[Click here to download a zip of these files.](https://github.com/olets/bayard-variations/archive/master.zip)
+
 ###Contents
   
 - Introduction
