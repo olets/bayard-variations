@@ -275,4 +275,4 @@ Here's the logic
 
 # License
 
-`bayard-variations` is licensed under the MIT License, with the following additional request: if you make use of it in any publication, commercial or otherwise, credit the author.
+**bayard-variations** is licensed under the MIT License, with the following additional request: if you make use of it in any publication, commercial or otherwise, let the author know: oletswrite@gmail.com. For commercial projects, please credit the author as well.
