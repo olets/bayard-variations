@@ -90,7 +90,7 @@ Use `hbv-deco-chords.fmt` to support writing guitar chords (e.g. `"A"`) with sta
 
  --
  
- ####Those decorations don't stack nicely. If you need to mark overlapping variations:
+ **Those decorations don't stack nicely with each other or with repeats** (e.g. `[1 ... ]`)**. If you need to mark overlapping variations, or need to use these decorations within a repeat, use the `_stack` variations:**
 
 1. ###var-x\_stack
 
@@ -111,19 +111,26 @@ Use `hbv-deco-chords.fmt` to support writing guitar chords (e.g. `"A"`) with sta
 
 
 
-Note: **guitar chords** (in `"quotations"`) **don't look good with stacked variation
-markers. Use the included `hbv-deco-chords.fmt` to get around this** - include
-that .fmt and replace any
+Notes:
+<ol type="A">
+
+<li>**guitar chords** (in `""` quotations) **don't look good with stacked variation
+markers. Use the included `hbv-deco-chords.fmt` to get around this** - include that `.fmt` and replace any
 
 	!var..._stack(! y0 "X" ... !var..._stack)!
 	
 with
  
 	!var..._stack(! y0 !X! y0 ... !var..._stack)!
+	
+The first line of `bayard-variations.fmt` imports `hbv-deco-chords.fmt`, commented out. The easiest way to add `!chord!` support, if you don't already have a base `.fmt` file to import both files into, is to download both `.fmt`s, put them in the same folder, and uncomment that first line of `bayard-variations.fmt`.
+	
+</li>
 
-I recommend always putting a `y0` after the opening deco of a long decoration,
+<li>I recommend always putting a `y0` after the opening deco of a long decoration,
 e.g. after `!var-x(!`. It's sometimes a good idea to put one after the closing
 deco `!var-x)!` and, in the case of variation markers stacked above guitar chords, after the `!X!` stackable guitar deco.
+</li>
 
 
 ## Customization
