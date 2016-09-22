@@ -8,7 +8,18 @@ For years in my fiddle transcriptions I marked variations with a superscripted l
 
 After I'd been working on PostScript decorations to emulate Bayard for a while, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation. The **bayard-variations** are my own expansion on Bayard and Salamon's ideas.
 
-##USAGE
+
+## Usage
+
+Download at least `bayard-variations.fmt`. Run abcm2ps with
+
+	abcm2ps INPUTFILE.abc -F bayard-variations.fmt
+
+(See the abcm2ps readme for additional options.)
+	
+Use `hbv-deco-chords.fmt` to support writing guitar chords (e.g. `"A"`) with stacked variation decorations (see [below](#var-x_stack)). Simply download the file in addition to `bayard-variations.fmt`, and uncomment (remove the line-initial `%` from) the first line of `bayard-variations.fmt`.
+
+## Variation decoration types
 
 1. ###var-x
  
@@ -98,7 +109,7 @@ e.g. after `!var-x(!`. It's sometimes a good idea to put one after the closing
 deco `!var-x)!` and, in the case of variation markers stacked above guitar chords, after the `!X!` stackable guitar deco.
 
 
-##CUSTOMIZATION
+## Customization
 
 I use Monaco 9 for the label and a thin 60%-black dashed line
 
@@ -109,11 +120,11 @@ I use Monaco 9 for the label and a thin 60%-black dashed line
 -	The dash is defined before every non-`[]` `setdash` (default: [3 5], which is 3px
 	of line followed by 5px of space)
 
-The line could be made e.g. solid and black by commenting out all `setdash` and `setgray`
+The line could be made e.g. solid and black by commenting out all `setdash` and `setgray`.
 
 
 
-##CONTENTS
+## Included decorations
 
 I've included a lot of decorations, which should cover most needs:
 
@@ -135,9 +146,9 @@ I've included a lot of decorations, which should cover most needs:
 - \_stackable unnamed open-ended variable `varcons_stack`
 - \_stackable open-start variable `varcont_stack`
 
-If that doesn't meet your needs, design your own:
+If that doesn't meet your needs, you can always
 
-##DESIGN
+## Design your own
 
 You'll need to add three lines per decoration, within `beginps...endps`:
 
@@ -194,7 +205,7 @@ seven, ten, or thirteen characters** long (using 1var, 2vars, 3vars, 4vars, and
 variable `<adjust>`, which determines the horizontal placement of the marker line's start.
 
 
-##ARCHITECTURE
+## Architecture
 
 Here's the logic
 
