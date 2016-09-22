@@ -23,7 +23,9 @@ For years in my fiddle transcriptions I marked variations with a superscripted l
 
 <img src="images/bayard.jpg" height="150px"/>
 
-After I'd been working on PostScript decorations to emulate Bayard for a while, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation. The **bayard-variations** are my own expansion on Bayard and Salamon's ideas.
+After I'd been working on PostScript decorations to emulate Bayard for a while, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation!
+
+These **bayard-variations** are my own expansion on Bayard's and Salamon's ideas.
 
 
 ## Usage
