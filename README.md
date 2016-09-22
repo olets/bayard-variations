@@ -128,23 +128,23 @@ The line could be made e.g. solid and black by commenting out all `setdash` and 
 
 I've included a lot of decorations, which should cover most needs:
 
-- single-letter variables `var-a` to `var-z`
-- single-number variables `var-0` to `var-9`
-- an asterisk variable `var-*`
-- two-letter variables `var-ab` to `var-yz` for sequential pairs (e.g. `var-bc`, not `var-ac`)
-- assorted other two-letter variables I've needed
-- three-letter variables `var-abc` to `var-klm` (again, in sequential triplets)
-- assorted other three-letter variables I've needed
-- the four-letter variable `var-abcd`
-- the five-letter variable `var-abcde`
-- single-letter open-ended variables `varcontinues-a` to `varcontinues-f`
-- the unnamed variable `var`
-- the open-ended unnamed variable `varcontinues`
-- the open-start variable `varcontinued`
-- single-letter \_stackable variables `var-a_stack` to `var-z_stack`
-- single-number \_stackable variables `var-1_stack` to `var-3_stack`
-- \_stackable unnamed open-ended variable `varcons_stack`
-- \_stackable open-start variable `varcont_stack`
+- single-letter decorations `var-a` to `var-z`
+- single-number decorations `var-0` to `var-9`
+- an asterisk decoration `var-*`
+- two-letter decorations `var-ab` to `var-yz` for sequential pairs (e.g. `var-bc`, not `var-ac`)
+- assorted other two-letter decorations I've needed
+- three-letter decorations `var-abc` to `var-klm` (again, in sequential triplets)
+- assorted other three-letter decorations I've needed
+- the four-letter decoration `var-abcd`
+- the five-letter decoration `var-abcde`
+- single-letter open-ended decorations `varcontinues-a` to `varcontinues-f`
+- the unnamed decoration `var`
+- the open-ended unnamed decoration `varcontinues`
+- the open-start decoration `varcontinued`
+- single-letter stackable decorations `var-a_stack` to `var-z_stack`
+- single-number stackable decorations `var-1_stack` to `var-3_stack`
+- stackable unnamed open-ended decoration `varcons_stack`
+- stackable open-start decoration `varcont_stack`
 
 If that doesn't meet your needs, you can always
 
@@ -153,53 +153,53 @@ If that doesn't meet your needs, you can always
 You'll need to add three lines per decoration, within `beginps...endps`:
 
 	/var-[name]{/varname ([marker text] def [1var/[2-5]vars]}!
-	deco var-[name]( [5 for normal, 7 for stacking] - 17 0 0
-	deco var-[name]) ["] var-[name] 17 0 0
+		deco var-[name]( [5 for normal, 7 for stacking] - 17 0 0
+		deco var-[name]) ["] var-[name] 17 0 0
 
 
 One-Character Example: `var-a`
 
 	/var-a{/varname (a) def 1var}!
-	deco var-a( 5 - 17 0 0
-	deco var-a) 5 var-a 17 0 0
+		deco var-a( 5 - 17 0 0
+		deco var-a) 5 var-a 17 0 0
 
 Two-Character Example: `var-ab`
 
 	/var-a{/varname (a, b) def 2vars}!
-	deco var-ab( 5 - 17 0 0
-	deco var-ab) 5 var-ab 17 0 0
+		deco var-ab( 5 - 17 0 0
+		deco var-ab) 5 var-ab 17 0 0
 
 Three-Character Example: `var-abc`
 
 	/var-abc{/varname (a, b, c) def 3vars}!
-	deco var-abc( 5 - 17 0 0
-	deco var-abc) 5 var-abc 17 0 0
+		deco var-abc( 5 - 17 0 0
+		deco var-abc) 5 var-abc 17 0 0
 
 Four-Character Example: `var-abcd`
 
 	/var-abcd{/varname(a, b, c, d) def 4vars}!
-	deco var-abcd( 5 - 17 0 0
-	deco var-abcd) 5 var-abc 17 0 0
+		deco var-abcd( 5 - 17 0 0
+		deco var-abcd) 5 var-abc 17 0 0
 
 Five-Character Example: `var-abcde`
 
 	/var-abcde{/varname (a, b, c, d, e) def 5vars}!
-	deco var-abcde( 5 - 17 0 0
-	deco var-abcde) 5 var-abcde 17 0 0
+		deco var-abcde( 5 - 17 0 0
+		deco var-abcde) 5 var-abcde 17 0 0
 
 Custom Example: `var-custom`
 
 	/var-custom{/varname (a. bc!!) def 3vars}!
-	deco var-custom( 5 - 17 0 0
-	deco var-custom) 5 var-custom 17 0 0
+		deco var-custom( 5 - 17 0 0
+		deco var-custom) 5 var-custom 17 0 0
 
-Custom \_stackable Example: `var-custom2`
+Custom Stackable Example: `var-custom2`
 
 	/var-custom_stack{/varname (a. bc!!) def 3vars}!
-	deco var-custom_stack( 7 - 17 0 0
-	deco var-custom_stack) 7 var-custom_stack 17 0 0
+		deco var-custom_stack( 7 - 17 0 0
+		deco var-custom_stack) 7 var-custom_stack 17 0 0
 
-Note, **for custom variables, that by default your marker text can be one, four
+Note: **for custom variables, by default your marker text can be one, four
 seven, ten, or thirteen characters** long (using 1var, 2vars, 3vars, 4vars, and
 5vars, respectively). For marker text of other lengths you'll need to customize the
 variable `<adjust>`, which determines the horizontal placement of the marker line's start.
@@ -213,32 +213,32 @@ Here's the logic
 &emsp;deco `var-[x[y[z[1[2]]]]][_stack](`  
 &emsp;and  
 &emsp;deco `var-[x[y[z[1[2]]]]][_stack])`  
-&emsp;&emsp;refer to  
+&emsp;&emsp;depend on  
 &emsp;&emsp;`/var-x`  
-&emsp;&emsp;&emsp;refers to  
+&emsp;&emsp;&emsp;depends on  
 &emsp;&emsp;&emsp;`/[#]vars`  
-&emsp;&emsp;&emsp;&emsp;refers to  
+&emsp;&emsp;&emsp;&emsp;depends on  
 &emsp;&emsp;&emsp;&emsp;`/variation`
 
 1. Unnamed, bracketing at start and end  
 &emsp;deco `var(`  
-&emsp;&emsp;refers to  
+&emsp;&emsp;depends on  
 &emsp;&emsp;`\unnamedvar`
 
 1. Open, named, extending a little further right than the default  
 &emsp;deco `varcontinues-[x[y[z[1[2]]]]](`  
 &emsp;and  
 &emsp;deco `varcontinues-[x[y[z[1[2]]]]])`  
-&emsp;&emsp;refer to  
+&emsp;&emsp;depend on  
 &emsp;&emsp;`/varconts-a`  
-&emsp;&emsp;&emsp;refers to  
+&emsp;&emsp;&emsp;depends on  
 &emsp;&emsp;&emsp;`/1contvar`
 
 1. Open, unnamed, extending a little further right than the default  
 &emsp;deco `varcontinues(`  
 &emsp;and  
 &emsp;deco `varcontinues)`  
-&emsp;&emsp;refer to  
+&emsp;&emsp;depend on  
 &emsp;&emsp;`/varcontsunnamed`
 
 1. Open at left, extending a little further left than the default  
@@ -249,5 +249,5 @@ Here's the logic
 &emsp;deco `varcont_stack(`  
 &emsp;and  
 &emsp;deco `varcont_stack)`  
-&emsp;&emsp;refer to  
+&emsp;&emsp;depend on  
 &emsp;&emsp;`/varcontd`
