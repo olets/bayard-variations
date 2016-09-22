@@ -4,20 +4,19 @@ These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff
 
 ###Contents
   
-- [Introduction](#Introduction)
-- [Usage](#Usage)
-- [Variation decoration types](#Variation decoration types)
-- [Customization](#Customization)
-- [Included decorations](#Included decorations)
-- [Design your own](#Design your own)
-- [Architecture](#Architecture)
-- [License](#License)
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Variation decoration types](#variation-decoration-types)
+- [Customization](#customization)
+- [Included decorations](#included-decorations)
+- [Design your own](#design-your-own)
+- [Architecture](#architecture)
+- [License](#license)
 
 --
 
-&nbsp;
-
 <a name="Introduction"></a>
+&nbsp;
 
 For years in my fiddle transcriptions I marked variations with a superscripted letter (in abc, this was `"^a..."`). Finally I came across that exact idea in print in Jeff Todd Titon's [*Old Time Kentucky Fiddle Tunes*](http://www.kentuckypress.com/live/title_detail.php?titleid=1074#.V-Mch5MrKHo). Titon says he "and other scholars" trace the idea back to [Samuel Bayard](https://en.wikipedia.org/wiki/Samuel_Preston_Bayard), in his 1944 *Hill Country Tunes: Instrumental Folk Music of Southwestern Pennsylvania*. Bayard's notation was actually nicer, as it showed exactly which notes were varied (my crop):
 
@@ -131,7 +130,7 @@ The first line of `bayard-variations.fmt` imports `hbv-deco-chords.fmt`, comment
 e.g. after `!var-x(!`. It's sometimes a good idea to put one after the closing
 deco `!var-x)!` and, in the case of variation markers stacked above guitar chords, after the `!X!` stackable guitar deco.
 </li>
-
+</ol>
 
 ## Customization
 
