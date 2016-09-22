@@ -1,0 +1,374 @@
+%	C_Func 3 Deco Guitar Chords
+%
+%	Decorations for Jef Moine's abcm2ps
+%	by Henry Bley-Vroman
+%
+%	This is an extension of my Sam Bayard-style variations' decos, and may not make sense
+%	or be of any use if you aren't using those.
+%
+%
+%	These are chords which play nicely with the deco <c_func> value 5
+%		("the decoration goes near the note but outside the staff.
+%		It is usually printed above the staff. 5: long 'trill'")
+%	Standard guitar chords (written inside a pair of quotation marks) print
+%	above decos with c_func 5, raising the entire guitar chord line.
+%	These deco chords (written inside a pair of exclamation points) print
+%	below decos with c_func 5, leaving the rest of the guitar chord line in
+%	its default position.
+%
+%	EXAMPLE, in conjunction with a pair of c_func=5 decos
+%
+%	!deco5(! y0 !Ab! y0 A !deco5)!
+%
+%	will print the text Ab below deco5
+%	
+%	Notes:
+%	-	whenever possible, guitar chords with flats or sharps should be written with gchords
+%		not decochords (decochords will print "b" and "#" instead of the music symbols)
+%	-	if you use a var_stack, any overlapped guitar chord MUST be a decochord NOT a gchord
+%	-	whenever possible, if a guitar chord is aligned horizontally with an ornament
+%		and is under a variation marker, use a gchord - this will give you a nice
+%		variation-above-chord-above-ornament layout. If a decochord has to be paired
+%		with an ornament, the order should be ornament-decochord (since both are c_func=3,
+%		the first deco is drawn, then the next is drawn above it, so ornament-chord
+%		will draw the chord above the ornament)
+%
+%	CONFIGURATION
+%	Set the font to match your gchordfont
+
+
+beginps
+
+%	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%	only expert users will want to mess around below this line
+%
+
+/chord{M 0 13 RM
+	/AvantGarde-Book 11.5 selectfont	% customize this font
+										% abcm2ps's default is Helvetica 12
+										% (don't accidentally lose the "/"!)
+	chordname show}!
+/accidentalchord{M 0 13 RM
+	/AvantGarde-Book 11.5 selectfont	% customize this font
+										% abcm2ps's default is Helvetica 12
+										% (don't accidentally lose the "/"!)
+	chordname}!
+
+
+% decochords that will look exactly like gchords
+% because they're only text
+/chord-A {/chordname (A) def chord}!
+/chord-Am {/chordname (Am) def chord}!
+/chord-A6 {/chordname (A6) def chord}!
+/chord-A7 {/chordname (A7) def chord}!
+/chord-A9 {/chordname (A9) def chord}!
+/chord-Am6 {/chordname (Am6) def chord}!
+/chord-Am7 {/chordname (Am7) def chord}!
+/chord-Amaj7 {/chordname (Amaj7) def chord}!
+/chord-Adim {/chordname (Adim) def chord}!
+/chord-A+ {/chordname (A+) def chord}!
+/chord-Asus {/chordname (Asus) def chord}!
+/chord-B {/chordname (B) def chord}!
+/chord-Bm {/chordname (Bm) def chord}!
+/chord-B6 {/chordname (B6) def chord}!
+/chord-B7 {/chordname (B7) def chord}!
+/chord-B9 {/chordname (B9) def chord}!
+/chord-Bm6 {/chordname (Bm6) def chord}!
+/chord-Bm7 {/chordname (Bm7) def chord}!
+/chord-Bmaj7 {/chordname (Bmaj7) def chord}!
+/chord-Bdim {/chordname (Bdim) def chord}!
+/chord-B+ {/chordname (B+) def chord}!
+/chord-Bsus {/chordname (Bsus) def chord}!
+/chord-C {/chordname (C) def chord}!
+/chord-Cm {/chordname (Cm) def chord}!
+/chord-C6 {/chordname (C6) def chord}!
+/chord-C7 {/chordname (C7) def chord}!
+/chord-C9 {/chordname (C9) def chord}!
+/chord-Cm6 {/chordname (Cm6) def chord}!
+/chord-Cm7 {/chordname (Cm7) def chord}!
+/chord-Cmaj7 {/chordname (Cmaj7) def chord}!
+/chord-Cdim {/chordname (Cdim) def chord}!
+/chord-C+ {/chordname (C+) def chord}!
+/chord-Csus {/chordname (Csus) def chord}!
+/chord-D {/chordname (D) def chord}!
+/chord-Dm {/chordname (Dm) def chord}!
+/chord-D6 {/chordname (D6) def chord}!
+/chord-D7 {/chordname (D7) def chord}!
+/chord-D9 {/chordname (D9) def chord}!
+/chord-Dm6 {/chordname (Dm6) def chord}!
+/chord-Dm7 {/chordname (Dm7) def chord}!
+/chord-Dmaj7 {/chordname (Dmaj7) def chord}!
+/chord-Ddim {/chordname (Ddim) def chord}!
+/chord-D+ {/chordname (D+) def chord}!
+/chord-Dsus {/chordname (Dsus) def chord}!
+/chord-E {/chordname (E) def chord}!
+/chord-Em {/chordname (Em) def chord}!
+/chord-E6 {/chordname (E6) def chord}!
+/chord-E7 {/chordname (E7) def chord}!
+/chord-E9 {/chordname (E9) def chord}!
+/chord-Em6 {/chordname (Em6) def chord}!
+/chord-Em7 {/chordname (Em7) def chord}!
+/chord-Emaj7 {/chordname (Emaj7) def chord}!
+/chord-Edim {/chordname (Edim) def chord}!
+/chord-E+ {/chordname (E+) def chord}!
+/chord-Esus {/chordname (Esus) def chord}!
+/chord-F {/chordname (F) def chord}!
+/chord-Fm {/chordname (Fm) def chord}!
+/chord-F6 {/chordname (F6) def chord}!
+/chord-F7 {/chordname (F7) def chord}!
+/chord-F9 {/chordname (F9) def chord}!
+/chord-Fm6 {/chordname (Fm6) def chord}!
+/chord-Fm7 {/chordname (Fm7) def chord}!
+/chord-Fmaj7 {/chordname (Fmaj7) def chord}!
+/chord-Fdim {/chordname (Fdim) def chord}!
+/chord-F+ {/chordname (F+) def chord}!
+/chord-Fsus {/chordname (Fsus) def chord}!
+/chord-G {/chordname (G) def chord}!
+/chord-Gm {/chordname (Gm) def chord}!
+/chord-G6 {/chordname (G6) def chord}!
+/chord-G7 {/chordname (G7) def chord}!
+/chord-G9 {/chordname (G9) def chord}!
+/chord-Gm6 {/chordname (Gm6) def chord}!
+/chord-Gm7 {/chordname (Gm7) def chord}!
+/chord-Gmaj7 {/chordname (Gmaj7) def chord}!
+/chord-Gdim {/chordname (Gdim) def chord}!
+/chord-G+ {/chordname (G+) def chord}!
+/chord-Gsus {/chordname (Gsus) def chord}!
+
+% oddities
+/chord-G? {/chordname (G?) def chord}!
+
+% decochords that won't look as good as gchords
+% because they'll print "b" and "#" instead of the flat and sharp symbols
+
+/chord-Ab{M 0 13 RM
+%	/AvantGarde-Book 11.5 selectfont (A) show
+	/Times-Roman 11.5 selectfont
+(adsA) show /sharp glyphshow
+}!
+
+%/chord-Ab {/chordname (F) show /sharp glyphshow def accidentalchord}!
+/chord-G#m {/chordname (G#m) def accidentalchord}!
+/chord-Ab6 {/chordname (Ab6) def accidentalchord}!
+/chord-Ab7 {/chordname (Ab7) def accidentalchord}!
+/chord-Ab9 {/chordname (Ab9) def accidentalchord}!
+/chord-G#m6 {/chordname (G#m6) def accidentalchord}!
+/chord-G#m7 {/chordname (G#m7) def accidentalchord}!
+/chord-Abmaj7 {/chordname (Abmaj7) def accidentalchord}!
+/chord-G#dim {/chordname (G#dim) def accidentalchord}!
+/chord-Ab+ {/chordname (Ab+) def accidentalchord}!
+/chord-Absus {/chordname (Absus) def accidentalchord}!
+/chord-Bb {/chordname (B\u266d) def accidentalchord}!
+/chord-Bbm {/chordname (Bbm) def accidentalchord}!
+/chord-Bb6 {/chordname (Bb6) def accidentalchord}!
+/chord-Bb7 {/chordname (Bb7) def accidentalchord}!
+/chord-Bb9 {/chordname (Bb9) def accidentalchord}!
+/chord-Bbm6 {/chordname (Bbm6) def accidentalchord}!
+/chord-Bbm7 {/chordname (Bbm7) def accidentalchord}!
+/chord-Bbmaj7 {/chordname (Bbmaj7) def accidentalchord}!
+/chord-Bbdim {/chordname (Bbdim) def accidentalchord}!
+/chord-Bb+ {/chordname (Bb+) def accidentalchord}!
+/chord-Bbsus {/chordname (Bbsus) def accidentalchord}!
+/chord-Db {/chordname (Db) def accidentalchord}!
+/chord-C#m {/chordname (C#m) def accidentalchord}!
+/chord-Db6 {/chordname (Db6) def accidentalchord}!
+/chord-Db7 {/chordname (Db7) def accidentalchord}!
+/chord-Db9 {/chordname (Db9) def accidentalchord}!
+/chord-C#m6 {/chordname (C#m6) def accidentalchord}!
+/chord-C#m7 {/chordname (C#m7) def accidentalchord}!
+/chord-Dbmaj7 {/chordname (Dbmaj7) def accidentalchord}!
+/chord-C#dim {/chordname (C#dim) def accidentalchord}!
+/chord-Db+ {/chordname (Db+) def accidentalchord}!
+/chord-Dbsus {/chordname (Dbsus) def accidentalchord}!
+/chord-Eb {/chordname (Eb) def accidentalchord}!
+/chord-Ebm {/chordname (Ebm) def accidentalchord}!
+/chord-Eb6 {/chordname (Eb6) def accidentalchord}!
+/chord-Eb7 {/chordname (Eb7) def accidentalchord}!
+/chord-Eb9 {/chordname (Eb9) def accidentalchord}!
+/chord-Ebm6 {/chordname (Ebm6) def accidentalchord}!
+/chord-Ebm7 {/chordname (Ebm7) def accidentalchord}!
+/chord-Ebmaj7 {/chordname (Ebmaj7) def accidentalchord}!
+/chord-Ebdim {/chordname (Ebdim) def accidentalchord}!
+/chord-Eb+ {/chordname (Eb+) def accidentalchord}!
+/chord-Ebsus {/chordname (Ebsus) def accidentalchord}!
+/chord-F# {/chordname (F#) def accidentalchord}!
+/chord-F#m {/chordname (F#m) def accidentalchord}!
+/chord-Gb6 {/chordname (Gb6) def accidentalchord}!
+/chord-F#7 {/chordname (F#7) def accidentalchord}!
+/chord-F#9 {/chordname (F#9) def accidentalchord}!
+/chord-F#m6 {/chordname (F#m6) def accidentalchord}!
+/chord-F#m7 {/chordname (F#m7) def accidentalchord}!
+/chord-Gbmaj7 {/chordname (Gbmaj7) def accidentalchord}!
+/chord-F#dim {/chordname (F#dim) def accidentalchord}!
+/chord-Gb+ {/chordname (Gb+) def accidentalchord}!
+/chord-Gbsus {/chordname (Gbsus) def accidentalchord}!
+
+% more
+/chord-A9sus4 {/chordname (A9sus4) def chord}!
+/chord-A7sus4 {/chordname (A7sus4) def chord}!
+
+% choices
+/chord-CE {/chordname (C/E) def accidentalchord}!
+/chord-DF# {/chordname (D/F#) def accidentalchord}!
+/chord-A7C# {/chordname (A7/C#) def accidentalchord}!
+endps
+
+deco Ab 3 chord-Ab 24 0 0
+deco G#m 3 chord-G#m 24 0 0
+deco Ab6 3 chord-Ab6 24 0 0
+deco Ab7 3 chord-Ab7 24 0 0
+deco Ab9 3 chord-Ab9 24 0 0
+deco G#m6 3 chord-G#m6 24 0 0
+deco G#m7 3 chord-G#m7 24 0 0
+deco Abmaj7 3 chord-Abmaj7 24 0 0
+deco G#dim 3 chord-G#dim 24 0 0
+deco Ab+ 3 chord-Ab+ 24 0 0
+deco Absus 3 chord-Absus 24 0 0
+deco A 3 chord-A 24 0 0
+deco Am 3 chord-Am 24 0 0
+deco A6 3 chord-A6 24 0 0
+deco A7 3 chord-A7 24 0 0
+deco A9 3 chord-A9 24 0 0
+deco Am6 3 chord-Am6 24 0 0
+deco Am7 3 chord-Am7 24 0 0
+deco Amaj7 3 chord-Amaj7 24 0 0
+deco Adim 3 chord-Adim 24 0 0
+deco A+ 3 chord-A+ 24 0 0
+deco Asus 3 chord-Asus 24 0 0
+deco Bb 3 chord-Bb 24 0 0
+deco Bbm 3 chord-Bbm 24 0 0
+deco Bb6 3 chord-Bb6 24 0 0
+deco Bb7 3 chord-Bb7 24 0 0
+deco Bb9 3 chord-Bb9 24 0 0
+deco Bbm6 3 chord-Bbm6 24 0 0
+deco Bbm7 3 chord-Bbm7 24 0 0
+deco Bbmaj7 3 chord-Bbmaj7 24 0 0
+deco Bbdim 3 chord-Bbdim 24 0 0
+deco Bb+ 3 chord-Bb+ 24 0 0
+deco Bbsus 3 chord-Bbsus 24 0 0
+deco B 3 chord-B 24 0 0
+deco Bm 3 chord-Bm 24 0 0
+deco B6 3 chord-B6 24 0 0
+deco B7 3 chord-B7 24 0 0
+deco B9 3 chord-B9 24 0 0
+deco Bm6 3 chord-Bm6 24 0 0
+deco Bm7 3 chord-Bm7 24 0 0
+deco Bmaj7 3 chord-Bmaj7 24 0 0
+deco Bdim 3 chord-Bdim 24 0 0
+deco B+ 3 chord-B+ 24 0 0
+deco Bsus 3 chord-Bsus 24 0 0
+deco C 3 chord-C 24 0 0
+deco Cm 3 chord-Cm 24 0 0
+deco C6 3 chord-C6 24 0 0
+deco C7 3 chord-C7 24 0 0
+deco C9 3 chord-C9 24 0 0
+deco Cm6 3 chord-Cm6 24 0 0
+deco Cm7 3 chord-Cm7 24 0 0
+deco Cmaj7 3 chord-Cmaj7 24 0 0
+deco Cdim 3 chord-Cdim 24 0 0
+deco C+ 3 chord-C+ 24 0 0
+deco Csus 3 chord-Csus 24 0 0
+deco Db 3 chord-Db 24 0 0
+deco C#m 3 chord-C#m 24 0 0
+deco Db6 3 chord-Db6 24 0 0
+deco Db7 3 chord-Db7 24 0 0
+deco Db9 3 chord-Db9 24 0 0
+deco C#m6 3 chord-C#m6 24 0 0
+deco C#m7 3 chord-C#m7 24 0 0
+deco Dbmaj7 3 chord-Dbmaj7 24 0 0
+deco C#dim 3 chord-C#dim 24 0 0
+deco Db+ 3 chord-Db+ 24 0 0
+deco Dbsus 3 chord-Dbsus 24 0 0
+deco D 3 chord-D 24 0 0
+deco Dm 3 chord-Dm 24 0 0
+deco D6 3 chord-D6 24 0 0
+deco D7 3 chord-D7 24 0 0
+deco D9 3 chord-D9 24 0 0
+deco Dm6 3 chord-Dm6 24 0 0
+deco Dm7 3 chord-Dm7 24 0 0
+deco Dmaj7 3 chord-Dmaj7 24 0 0
+deco Ddim 3 chord-Ddim 24 0 0
+deco D+ 3 chord-D+ 24 0 0
+deco Dsus 3 chord-Dsus 24 0 0
+deco Eb 3 chord-Eb 24 0 0
+deco Ebm 3 chord-Ebm 24 0 0
+deco Eb6 3 chord-Eb6 24 0 0
+deco Eb7 3 chord-Eb7 24 0 0
+deco Eb9 3 chord-Eb9 24 0 0
+deco Ebm6 3 chord-Ebm6 24 0 0
+deco Ebm7 3 chord-Ebm7 24 0 0
+deco Ebmaj7 3 chord-Ebmaj7 24 0 0
+deco Ebdim 3 chord-Ebdim 24 0 0
+deco Eb+ 3 chord-Eb+ 24 0 0
+deco Ebsus 3 chord-Ebsus 24 0 0
+deco E 3 chord-E 24 0 0
+deco Em 3 chord-Em 24 0 0
+deco E6 3 chord-E6 24 0 0
+deco E7 3 chord-E7 24 0 0
+deco E9 3 chord-E9 24 0 0
+deco Em6 3 chord-Em6 24 0 0
+deco Em7 3 chord-Em7 24 0 0
+deco Emaj7 3 chord-Emaj7 24 0 0
+deco Edim 3 chord-Edim 24 0 0
+deco E+ 3 chord-E+ 24 0 0
+deco Esus 3 chord-Esus 24 0 0
+deco F 3 chord-F 24 0 0
+deco Fm 3 chord-Fm 24 0 0
+deco F6 3 chord-F6 24 0 0
+deco F7 3 chord-F7 24 0 0
+deco F9 3 chord-F9 24 0 0
+deco Fm6 3 chord-Fm6 24 0 0
+deco Fm7 3 chord-Fm7 24 0 0
+deco Fmaj7 3 chord-Fmaj7 24 0 0
+deco Fdim 3 chord-Fdim 24 0 0
+deco F+ 3 chord-F+ 24 0 0
+deco Fsus 3 chord-Fsus 24 0 0
+deco F# 3 chord-F# 24 0 0
+deco F#m 3 chord-F#m 24 0 0
+deco Gb6 3 chord-Gb6 24 0 0
+deco F#7 3 chord-F#7 24 0 0
+deco F#9 3 chord-F#9 24 0 0
+deco F#m6 3 chord-F#m6 24 0 0
+deco F#m7 3 chord-F#m7 24 0 0
+deco Gbmaj7 3 chord-Gbmaj7 24 0 0
+deco F#dim 3 chord-F#dim 24 0 0
+deco Gb+ 3 chord-Gb+ 24 0 0
+deco Gbsus 3 chord-Gbsus 24 0 0
+deco G 3 chord-G 24 0 0
+deco Gm 3 chord-Gm 24 0 0
+deco G6 3 chord-G6 24 0 0
+deco G7 3 chord-G7 24 0 0
+deco G9 3 chord-G9 24 0 0
+deco Gm6 3 chord-Gm6 24 0 0
+deco Gm7 3 chord-Gm7 24 0 0
+deco Gmaj7 3 chord-Gmaj7 24 0 0
+deco Gdim 3 chord-Gdim 24 0 0
+deco G+ 3 chord-G+ 24 0 0
+deco Gsus 3 chord-Gsus 24 0 0
+deco CE 3 chord-CE 24 0 0
+deco A7sus4 3 chord-A7sus4 24 0 0
+deco A9sus4 3 chord-A9sus4 24 0 0
+deco DF# 3 chord-DF# 24 0 0
+deco A7C# 3 chord-A7C# 24 0 0
+
+%oddities
+deco G? 3 chord-G? 24 0 0
+
+beginps
+%optionals
+/chord-optG{M 0 13 RM
+	/AvantGarde-Book 11.5 selectfont
+	(\(G\)) show}!
+/chord-optD{M 0 13 RM
+	/AvantGarde-Book 11.5 selectfont
+	(\(D\)) show}!
+/chord-BmoptG{M 0 13 RM
+	/AvantGarde-Book 11.5 selectfont
+	(Bm \(G\)) show}!
+endps
+
+%optionals
+deco (G) 3 chord-optG 24 0 0
+deco (D) 3 chord-optD 24 0 0
+deco Bm(G) 3 chord-BmoptG 24 0 0
