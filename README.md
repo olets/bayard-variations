@@ -4,7 +4,7 @@ These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff
 
 For years in my fiddle transcriptions I marked variations with a superscripted letter (in abc, this was `"^a..."`). Finally I came across that exact idea in print in Jeff Todd Titon's [*Old Time Kentucky Fiddle Tunes*](http://www.kentuckypress.com/live/title_detail.php?titleid=1074#.V-Mch5MrKHo). Titon says he "and other scholars" trace the idea back to [Samuel Bayard](https://en.wikipedia.org/wiki/Samuel_Preston_Bayard), in his 1944 *Hill Country Tunes: Instrumental Folk Music of Southwestern Pennsylvania*. Bayard's notation was actually nicer, as it showed exactly which notes were varied (my crop):
 
-<kbd><img src="images/bayard.jpg" height="150px"/></kdb>
+<img src="images/bayard.jpg" height="150px"/>
 
 After I'd been working on PostScript decorations to emulate Bayard for a couple years, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation. The **bayard-variations** are my own expansion on Bayard and Salamon's ideas.
 
