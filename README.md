@@ -4,14 +4,14 @@ These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff
 
 ###Contents
   
-- [Introduction](Introduction)
-- [Usage](Usage)
-- [Variation decoration types](Variation decoration types)
-- [Customization](Customization)
-- [Included decorations](Included decorations)
-- [Design your own](Design your own)
-- [Architecture](Architecture)
-- [License](License)
+- [Introduction](#Introduction)
+- [Usage](#Usage)
+- [Variation decoration types](#Variation decoration types)
+- [Customization](#Customization)
+- [Included decorations](#Included decorations)
+- [Design your own](#Design your own)
+- [Architecture](#Architecture)
+- [License](#License)
 
 --
 
@@ -280,6 +280,6 @@ Here's the logic
 
 --
 
-# License
+## License
 
 **bayard-variations** is licensed under the MIT License, with the following additional request: if you make use of it in any publication, commercial or otherwise, let the author know: oletswrite@gmail.com. For commercial projects, please credit the author as well.
