@@ -281,9 +281,9 @@ Here's the logic
 
 ## If something goes wrong
 
-**bayard-variations** not working for you? Check to see if it's a [known issue](issues). If it isn't, add it!
+**bayard-variations** not working for you? Check to see if it's a [known issue](https://github.com/olets/bayard-variations/issues). If it isn't, add it!
 
-I'll mention one bug in particular: sometimes the decos may draw below the staff instead of above it. Just stick a `w:` field at the end of the tune. I do this in the bayard-variations demo, and it's documented in [issue #1](/issues/1).
+I'll mention one bug in particular: sometimes the decos may draw below the staff instead of above it. Just stick a `w:` field at the end of the tune. I do this in the bayard-variations demo, and it's documented in [issue #1](https://github.com/olets/bayard-variations/issues/1).
 
 
 &nbsp;
