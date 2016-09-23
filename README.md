@@ -117,7 +117,7 @@ Use `hbv-deco-chords.fmt` to support writing guitar chords (e.g. `"A"`) with sta
 Notes:
 <ol type="A">
 
-<li>**guitar chords** (in `""` quotations) **don't look good with stacked variation
+<li> **guitar chords** (in `""` quotations) **don't look good with stacked variation
 markers. Use the included `hbv-deco-chords.fmt` to get around this** - include that `.fmt` and replace any
 
 	!var..._stack(! y0 "X" ... !var..._stack)!
