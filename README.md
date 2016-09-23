@@ -13,6 +13,7 @@ These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff
 - [Included decorations](#included-decorations)
 - [Design your own](#design-your-own)
 - [Architecture](#architecture)
+- [If something goes wrong](#if-something-goes-wrong)
 - [License](#license)
 
 --
@@ -25,7 +26,7 @@ For years in my fiddle transcriptions I marked variations with a superscripted l
 
 After I'd been working on PostScript decorations to emulate Bayard for a while, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation!
 
-These **bayard-variations** are my own expansion on Bayard's and Salamon's ideas.
+These **bayard-variations** are my own expansion on Bayard's and Salamon's designs.
 
 
 ## Usage
@@ -277,6 +278,13 @@ Here's the logic
 &emsp;deco `varcont_stack)`  
 &emsp;&emsp;depend on  
 &emsp;&emsp;`/varcontd`
+
+## If something goes wrong
+
+**bayard-variations** not working for you? Check to see if it's a [known issue](/issues). If it isn't, add it!
+
+I'll mention one bug in particular: sometimes the decos may draw below the staff instead of above it. Just stick a `w:` field at the end of the tune. I do this in the bayard-variations demo, and it's documented in [issue #1](/issues/1).
+
 
 &nbsp;
 
