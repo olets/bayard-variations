@@ -575,6 +575,20 @@ deco var-2_stack( 5 - 17 0 0
 deco var-2_stack) 5 var-2 17 0 0
 deco var-3_stack( 5 - 17 0 0
 deco var-3_stack) 5 var-3 17 0 0
+deco var-4_stack( 5 - 17 0 0
+deco var-4_stack) 5 var-4 17 0 0
+deco var-5_stack( 5 - 17 0 0
+deco var-5_stack) 5 var-5 17 0 0
+deco var-6_stack( 5 - 17 0 0
+deco var-6_stack) 5 var-6 17 0 0
+deco var-7_stack( 5 - 17 0 0
+deco var-7_stack) 5 var-7 17 0 0
+deco var-8_stack( 5 - 17 0 0
+deco var-8_stack) 5 var-8 17 0 0
+deco var-9_stack( 5 - 17 0 0
+deco var-9_stack) 5 var-9 17 0 0
+deco var-0_stack( 5 - 17 0 0
+deco var-0_stack) 5 var-0 17 0 0
 deco var-*_stack( 5 - 17 0 0
 deco var-*_stack) 5 var-* 17 0 0
 
