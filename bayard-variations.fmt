@@ -292,6 +292,7 @@ beginps
 /4vars{/adjust 63 def variation}!
 /5vars{/adjust 80 def variation}!
 
+/firstvars{/adjust 64 def variation}!
 /lastvars{/adjust 58 def variation}!
 
 /1contvar{/adjust 15 def varconts}!
@@ -422,6 +423,7 @@ beginps
 /var-pq{/varname (p, q) def 2vars}!
 /var-ei{/varname (e, i) def 2vars}!
 
+/var-first{/varname (First time) def firstvars}!
 /var-last{/varname (Last time) def lastvars}!
 
 /varlist-a{/varname (a) def var-list}!
@@ -784,5 +786,7 @@ deco varcons_stack) 5 varcontsunnamed 17 0 0
 deco varcont_stack( 5 - 17 0 0
 deco varcont_stack) 5 varcontd 17 0 0
 
+deco var-first( 7 - 17 0 0
+deco var-first) 7 var-first 17 0 0
 deco var-last( 7 - 17 0 0
 deco var-last) 7 var-last 17 0 0
