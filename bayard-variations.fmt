@@ -671,6 +671,9 @@ deco var-pq_stack) 5 var-pq 17 0 0
 deco var-z1_stack( 5 - 17 0 0
 deco var-z1_stack) 5 var-z1 17 0 0
 
+deco var-de_stack( 5 - 17 0 0
+deco var-de_stack) 5 var-de 17 0 0
+
 % three-letter/seven-character
 deco var-abc( 7 - 17 0 0
 deco var-abc) 7 var-abc 17 0 0
