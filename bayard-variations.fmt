@@ -417,8 +417,10 @@ beginps
 /var-is{/varname (i, s) def 2vars}!
 /var-cm{/varname (c, m) def 2vars}!
 /var-bd{/varname (b, d) def 2vars}!
+/var-fj{/varname (f, j) def 2vars}!
 /var-be{/varname (b, e) def 2vars}!
 /var-pq{/varname (p, q) def 2vars}!
+/var-ei{/varname (e, i) def 2vars}!
 
 /var-last{/varname (Last time) def lastvars}!
 
@@ -640,10 +642,14 @@ deco var-cm( 7 - 17 0 0
 deco var-cm) 7 var-cm 17 0 0
 deco var-be( 7 - 17 0 0
 deco var-be) 7 var-be 17 0 0
+deco var-fj( 7 - 17 0 0
+deco var-fj) 7 var-fj 17 0 0
 deco var-pq( 7 - 17 0 0
 deco var-pq) 7 var-pq 17 0 0
 deco var-bd( 7 - 17 0 0
 deco var-bd) 7 var-bd 17 0 0
+deco var-ei( 7 - 17 0 0
+deco var-ei) 7 var-ei 17 0 0
 
 % stackable two-letter/four-character
 deco var-bc_stack( 5 - 17 0 0
