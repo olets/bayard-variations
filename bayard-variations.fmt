@@ -1,8 +1,16 @@
 %format hbv-deco-chords
 
-% Variations Markers for abcm2ps
-% by Henry Bley-Vroman
+% % % % % % % % % % % % % % % % % % % % % % % %
 %
+% Bayard Variations: Variations Markers for abcm2ps v1.0.1
+% Copyright © 2016 Henry Bley-Vroman
+% MIT license
+%
+% https://github.com/olets/bayard-variations
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
+
 % This .fmt file contains decos for Jef Moine's abcm2ps music typesetting
 % software. It prints Samuel Baylor-style variations' markers above the staff.
 %
@@ -762,7 +770,6 @@ deco var-fghi_stack) 5 var-fghi 17 0 0
 % five-letter/twelve-character
 deco var-abcde( 7 - 17 0 0
 deco var-abcde) 7 var-abcde 17 0 0
-
 deco var-defgh( 7 - 17 0 0
 deco var-defgh) 7var-defgh 17 0 0
 
