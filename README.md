@@ -309,7 +309,7 @@ Here's the logic
 
 **bayard-variations** not working for you? Check to see if it's a [known issue](https://github.com/olets/bayard-variations/issues). If it isn't, add it!
 
-I'll mention one bug in particular: sometimes the decos may draw below the staff instead of above it. Just stick a `w:` field at the end of the tune. I do this in the bayard-variations demo, and it's documented in [issue #1](https://github.com/olets/bayard-variations/issues/1).
+I'll mention one bug in particular: sometimes the decos may draw below the staff instead of above it. Just add `I: dynamic 1` to each tune or, to cover the entire abc file, at the top of the file. I do this in the bayard-variations demo, and it's documented in [issue #1](https://github.com/olets/bayard-variations/issues/1).
 
 
 &nbsp;
