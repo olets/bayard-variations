@@ -22,7 +22,7 @@ K:C
 %
 % two referents
 "_var-ab()"\
-!var-ab(! y0 AAA BBB !var-ab)! |\
+!var-ab(!y0AAA!var-ab)!y0 BBB |\
 %
 % unnamed
 "_var()"\
@@ -30,7 +30,7 @@ K:C
 %
 % single referent open ended
 "_varcontinues-a()"\
-!varcontinues-a(! y0 AAA BBB !varcontinues-a)! |
+AAA !varcontinues-a(! y0 BBB !varcontinues-a)! |
 %
 %
 %
@@ -38,20 +38,31 @@ K:C
 "_varcontinued()"\
 !varcontinued(! y0 AAA BBB !varcontinued)! |\
 %
-% unnamed open ended
-"_varcontinues()"\
-!varcontinues(! y0 AAA BBB !varcontinues)! |\
-%
 % stackable single referents
 "_var-x_stack()"\
 !var-a_stack(! y0 !var-b_stack(! y0 AAA !var-b_stack)! BBB !var-a_stack)! |\
 %
 % stackable open beginning, stackable two referents, and stackable chord
 "_varcont_stack()\nand var-ab_stack()\nand G"\
-!varcont_stack(!!var-ab_stack(!y0 AAA !var-ab_stack)! !G!BBB !varcont_stack)! |
+!varcont_stack(!!var-bc_stack(!y0 AAA !var-bc_stack)! !G!BBB !varcont_stack)! |\
+%
+% first
+"_var-first()"\
+!var-first(!y0AAA BBB!var-first)! |
 %
 %
 %
+%%multicol start
+%%staffwidth 13.5cm
+%
+% last
+"_var-last()"
+AAA B!var-last(!BB | AAA!var-last)! BBB |\
+%
+% unnamed open ended
+"_varcontinues()"\
+!varcontinues(! y0 AAA BBB !varcontinues)! |\
+%%multicol end
 %
 %
 W:
