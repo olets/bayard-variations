@@ -632,6 +632,8 @@ deco var-st( 7 - 17 0 0
 deco var-st) 7 var-st 17 0 0
 deco var-tu( 7 - 17 0 0
 deco var-tu) 7 var-tu 17 0 0
+deco var-uv( 7 - 17 0 0
+deco var-uv) 7 var-uv 17 0 0
 deco var-vw( 7 - 17 0 0
 deco var-vw) 7 var-vw 17 0 0
 deco var-wx( 7 - 17 0 0
@@ -642,6 +644,8 @@ deco var-yz( 7 - 17 0 0
 deco var-yz( 7 var-yz 17 0 0
 deco var-z1( 7 - 17 0 0
 deco var-z1) 7 var-z1 17 0 0
+deco var-12( 7 - 17 0 0
+deco var-12) 7 var-12 17 0 0
 deco var-23( 7 - 17 0 0
 deco var-23) 7 var-23 17 0 0
 deco var-45( 7 - 17 0 0
