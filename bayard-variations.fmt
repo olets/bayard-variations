@@ -377,7 +377,6 @@ beginps
 /var-12{/varname (1, 2) def 2vars}!
 /var-23{/varname (2, 3) def 2vars}!
 /var-34{/varname (3, 4) def 2vars}!
-
 /var-45{/varname (4, 5) def 2vars}!
 
 /var-abc{/varname (a, b, c) def 3vars}!
@@ -635,17 +634,14 @@ deco var-tu( 7 - 17 0 0
 deco var-tu) 7 var-tu 17 0 0
 deco var-vw( 7 - 17 0 0
 deco var-vw) 7 var-vw 17 0 0
+deco var-wx( 7 - 17 0 0
+deco var-wx) 7 var-wx 17 0 0
 deco var-xy( 7 - 17 0 0
 deco var-xy) 7 var-xy 17 0 0
 deco var-yz( 7 - 17 0 0
 deco var-yz( 7 var-yz 17 0 0
 deco var-z1( 7 - 17 0 0
 deco var-z1) 7 var-z1 17 0 0
-
-deco var-wx( 7 - 17 0 0
-deco var-wx) 7 var-wx 17 0 0
-deco var-yz( 7 - 17 0 0
-deco var-yz) 7 var-yz 17 0 0
 deco var-23( 7 - 17 0 0
 deco var-23) 7 var-23 17 0 0
 deco var-45( 7 - 17 0 0
@@ -670,6 +666,8 @@ deco var-ei) 7 var-ei 17 0 0
 % stackable two-letter/four-character
 deco var-bc_stack( 5 - 17 0 0
 deco var-bc_stack) 5 var-bc 17 0 0
+deco var-de_stack( 5 - 17 0 0
+deco var-de_stack) 5 var-de 17 0 0
 deco var-ef_stack( 5 - 17 0 0
 deco var-ef_stack) 5 var-ef 17 0 0
 deco var-gh_stack( 5 - 17 0 0
@@ -687,14 +685,9 @@ deco var-pq_stack) 5 var-pq 17 0 0
 deco var-z1_stack( 5 - 17 0 0
 deco var-z1_stack) 5 var-z1 17 0 0
 
-deco var-de_stack( 5 - 17 0 0
-deco var-de_stack) 5 var-de 17 0 0
-
 % three-letter/seven-character
 deco var-abc( 7 - 17 0 0
 deco var-abc) 7 var-abc 17 0 0
-deco var-cde( 7 - 17 0 0
-deco var-cde) 7 var-cde 17 0 0
 deco var-def( 7 - 17 0 0
 deco var-def) 7 var-def 17 0 0
 deco var-efg( 7 - 17 0 0
@@ -712,9 +705,12 @@ deco var-jkl) 7 var-jkl 17 0 0
 deco var-klm( 7 - 17 0 0
 deco var-klm) 7 var-klm 17 0 0
 
+deco var-bcd( 7 - 17 0 0
+deco var-bcd) 7 var-bcd 17 0 0
+deco var-cde( 7 - 17 0 0
+deco var-cde) 7 var-cde 17 0 0
 deco var-mno( 7 - 17 0 0
 deco var-mno) 7 var-mno 17 0 0
-
 deco var-rst( 7 - 17 0 0
 deco var-rst) 7 var-rst 17 0 0
 deco var-stu( 7 - 17 0 0
@@ -736,8 +732,6 @@ deco var-vwx_stack( 5 - 17 0 0
 deco var-vwx_stack) 5 var-vwx 17 0 0
 
 % non-sequential three-letter/seven-character
-deco var-bcd( 7 - 17 0 0
-deco var-bcd) 7 var-bcd 17 0 0
 deco var-cgh( 7 - 17 0 0
 deco var-cgh) 7 var-cgh 17 0 0
 deco var-cdj( 7 - 17 0 0
