@@ -154,23 +154,50 @@ The line could be made e.g. solid and black by commenting out all `setdash` and 
 
 I've included a lot of decorations, which should cover most needs:
 
-- single-letter decorations `var-a` to `var-z`
-- single-number decorations `var-0` to `var-9`
-- an asterisk decoration `var-*`
-- two-letter decorations `var-ab` to `var-yz` for sequential pairs (e.g. `var-bc`, not `var-ac`)
-- assorted other two-letter decorations I've needed
-- three-letter decorations `var-abc` to `var-klm` (again, in sequential triplets)
-- assorted other three-letter decorations I've needed
-- the four-letter decoration `var-abcd`
-- the five-letter decoration `var-abcde`
-- single-letter open-ended decorations `varcontinues-a` to `varcontinues-f`
+No referent:
+
 - the unnamed decoration `var`
-- the open-ended unnamed decoration `varcontinues`
-- the open-start decoration `varcontinued`
+
+Single referent:
+
+- single-letter decorations `var-a` to `var-z`
 - single-letter stackable decorations `var-a_stack` to `var-z_stack`
-- single-number stackable decorations `var-1_stack` to `var-3_stack`
+- single-number decorations `var-0` to `var-9`
+- single-number stackable decorations `var-0_stack` to `var-9_stack`
+- an asterisk decoration `var-*`
+
+Two referents:
+
+- two-letter decorations `var-ab` to `var-yz` for non-overlapping sequential pairs (e.g. `var-bc`, not `var-ac`)
+- two-number decorations `var-12`, `23`, `34`, `45`
+- assorted other two-letter decorations I've needed (`var-is`, `cm`, `be`, `fj`, `pq`, `bd`, `ei`, `z1`)
+- assorted two-letter stackable decorations I've needed (`var-bc_stack`, `de`, `ef`, `gh`, `ij`, `jk`, `lm`, `no`, `pq`, `z1`)
+
+Three referents:
+
+- three-letter decorations `var-abc` to `klm` (again, in non-overlapping sequential triplets - so `abc` and `def` but not `bcd` or `cde` (though in that particular case, see immediately below))
+- assorted other three-letter decorations I've needed (`var-bcd`, `cde`, `cgh`, `cdj`, `mno`, `rst`, `stu`, `tuv`)
+- assorted stackable three-letter decorations I've needed (`var-ghi_stack`, `opq`, `stu`, `tuv`, `vwx`)
+
+More than three referents:
+
+- some four-letter decorations I've needed (`var-abcd`, `klmn`, `lmno`, `vwxy`, `wxyz`)
+- some stackable four-letter decorations (`var-efgh_stack`, `fghi`)
+- some five-letter decorations (`var-abcde`, `defgh`, `aemno`)
+
+Open-ended (no referent, or single- or multiple-referent):
+
+- the open-ended unnamed decoration `varcontinues`
+- single-letter open-ended decorations `varcontinues-a` to `varcontinues-h`
 - stackable unnamed open-ended decoration `varcons_stack`
+- the open-start decoration `varcontinued`
 - stackable open-start decoration `varcont_stack`
+
+Special:
+
+- `var-first` decoration for a first-time-through variation
+- `var-last` decoration for a last-time-through variation
+
 
 If that doesn't meet your needs, you can always
 
