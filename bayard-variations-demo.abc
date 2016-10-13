@@ -11,6 +11,7 @@
 
 X:1
 T:"Bayard"-style Variation Notation for abcm2ps
+I:dynamic 1 % makes sure the decos appear above the staff (a w: field at the end of the tune has the same effect)
 M:C|
 L:1/8
 K:C
@@ -42,7 +43,6 @@ K:C
 !varcont_stack(!!var-a_stack(!y0 AAA !var-a_stack)! !G!BBB !varcont_stack)! |
 %
 %
-w:******% at least one w: line is sometimes required in the tune to keep variation decos from printing below the staff. a bug, but easy to work around
 %
 %
 %
