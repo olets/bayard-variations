@@ -1,10 +1,19 @@
 # bayard-variations
 
-These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff variation-marking notation to [abc](http://abcnotation.com/).
+These [abcm2ps](https://github.com/leesavide/abcm2ps) "decos" add support for above the staff variation-marking notation to [abc](http://abcnotation.com/).
 
 [Click here to download a zip of these files.](https://github.com/olets/bayard-variations/archive/master.zip)
 
-###Contents
+
+For years in my fiddle transcriptions I marked variations with a superscripted letter (in abc, this was `"^a..."`). Finally I came across that exact idea in print in Jeff Todd Titon's [*Old Time Kentucky Fiddle Tunes*](http://www.kentuckypress.com/live/title_detail.php?titleid=1074#.V-Mch5MrKHo). Titon says he "and other scholars" trace the idea back to [Samuel Bayard](https://en.wikipedia.org/wiki/Samuel_Preston_Bayard), in his 1944 *Hill Country Tunes: Instrumental Folk Music of Southwestern Pennsylvania*. Bayard's notation was actually nicer, as it showed exactly which notes were varied (my crop):
+
+<img src="images/bayard.jpg" height="150px"/>
+
+After I'd been working on PostScript decorations to emulate Bayard for a while, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation!
+
+These **bayard-variations** are my own expansion on Bayard's and Salamon's designs.
+
+### Contents
   
 - Introduction
 - [Usage](#usage)
@@ -16,18 +25,6 @@ These [abcm2ps](http://moinejf.free.fr/) "decos" add support for above the staff
 - [If something goes wrong](#if-something-goes-wrong)
 - [License](#license)
 
---
-
-&nbsp;
-
-For years in my fiddle transcriptions I marked variations with a superscripted letter (in abc, this was `"^a..."`). Finally I came across that exact idea in print in Jeff Todd Titon's [*Old Time Kentucky Fiddle Tunes*](http://www.kentuckypress.com/live/title_detail.php?titleid=1074#.V-Mch5MrKHo). Titon says he "and other scholars" trace the idea back to [Samuel Bayard](https://en.wikipedia.org/wiki/Samuel_Preston_Bayard), in his 1944 *Hill Country Tunes: Instrumental Folk Music of Southwestern Pennsylvania*. Bayard's notation was actually nicer, as it showed exactly which notes were varied (my crop):
-
-<img src="images/bayard.jpg" height="150px"/>
-
-After I'd been working on PostScript decorations to emulate Bayard for a while, Beáta Salamon's [*Magyar népzenei dallamgyűjtemény*](http://www.hagyomanyokhaza.hu/page/716/) came out… and what did I find in it but beautiful Bayard-type variation notation!
-
-These **bayard-variations** are my own expansion on Bayard's and Salamon's designs.
-
 
 ## Usage
 
@@ -35,82 +32,85 @@ Download at least `bayard-variations.fmt`. Run abcm2ps with
 
 	abcm2ps INPUTFILE.abc -F bayard-variations.fmt
 
-(See the abcm2ps readme for additional options.)
+(See the [abcm2ps readme](https://github.com/leesavide/abcm2ps) for additional options.)
 	
 Use `hbv-deco-chords.fmt` to support writing guitar chords (e.g. `"A"`) with stacked variation decorations (see [below](#var-x_stack)). Simply download the file in addition to `bayard-variations.fmt`, and uncomment (remove the line-initial `%` from) the first line of `bayard-variations.fmt`.
 
 ## Variation decoration types
 
-1. ###var-x
+1. **var-x**
  
 	```
 	!var-x(! y0 AAA BBB !var-x)!
 	```
- prints `x-------,` over the notes AAA BBB
- 
- <kbd><img src="images/var-x.png" height="90px"/></kbd>
- 
-1. ###var-xy
- 
+	prints `x-------,` over the notes AAA BBB
+
+	<kbd><img src="images/var-x.png" height="90px"/></kbd>
+
+2. **var-xy**
+
 	```
 	!var-xy(! y0 AAA BBB !var-xy)!
 	```
- prints `x, y----,` over the notes and so on for `var-xyz`, `var-xyz1`, and `var-xyz12`
- 
- <kbd><img src="images/var-xy.png" height="90px"/></kbd>
- 
-1. ###var
+	prints `x, y----,` over the notes and so on for `var-xyz`, `var-xyz1`, and `var-xyz12`
+
+	<kbd><img src="images/var-xy.png" height="90px"/></kbd>
+
+3. **var**
+
 	```
 	!var(! y0 AAA BBB !var)!
 	```
- prints `,-------,` over the notes
- 
- <kbd><img src="images/var.png" height="90px"/></kbd>
- 
-1. ###varcontinues-x
+	prints `,-------,` over the notes
+
+	<kbd><img src="images/var.png" height="90px"/></kbd>
+
+4. **varcontinues-x**
+
 	```
 	!varcontinues-x(! y0 AAA BBB !varcontinues-x)!
 	```
- prints `x---------` over the notes (e.g. for use when a variation extends beyond the end of a staff). *varcontinues-x is intended to pair with varcontinued*
- 
- <kbd><img src="images/varcontinues-x.png" height="90px"/></kbd>
- 
-1. ###varcontinues
+	prints `x---------` over the notes (e.g. for use when a variation extends beyond the end of a staff). *varcontinues-x is intended to pair with varcontinued*
+
+	<kbd><img src="images/varcontinues-x.png" height="90px"/></kbd>
+
+5. **varcontinues**
+
 	```
 	!varcontinues(! y0 AAA BBB !varcontinues)!
 	```
- prints `,---------` over the notes (e.g. for use when a variation extends beyond the end of a staff). *varcontinues is intended to pair with varcontinued*
+	prints `,---------` over the notes (e.g. for use when a variation extends beyond the end of a staff). *varcontinues is intended to pair with varcontinued*
+
+	<kbd><img src="images/varcontinues.png" height="90px"/></kbd>
  
- <kbd><img src="images/varcontinues.png" height="90px"/></kbd>
- 
-1. ###varcontinued
+6. **varcontinued**
+
 	```
 	!varcontinued(! y0 AAA BBB !varcontinued)!
 	```
- prints `--------,` over the notes (e.g. for use when a variation started before the current staff. *varcontinued is intended to pair with either varcontinues-x or varcontinues*
- 
- <kbd><img src="images/varcontinued.png" height="90px"/></kbd>
+	prints `--------,` over the notes (e.g. for use when a variation started before the current staff. *varcontinued is intended to pair with either varcontinues-x or varcontinues*
 
- --
- 
- **Those decorations don't stack nicely with each other or with repeats** (e.g. `[1 ... ]`)**. If you need to mark overlapping variations, or need to use these decorations within a repeat, use the `_stack` variations:**
+	<kbd><img src="images/varcontinued.png" height="90px"/></kbd>
 
-1. ###var-x\_stack
+Those decorations don't stack nicely with each other or with repeats (e.g. `[1 ... ]`). If you need to mark overlapping variations, or need to use these decorations within a repeat, use the `_stack` variants:
+
+7. **var-x\_stack**
 
 	```
 	!var-x_stack! !var-y_stack! y0 AAA !var-y_stack)! BBB !var-x_stack)!
 	```
-  prints `y----,` over `AAA` and, above that, `x---------,` over `AAA BBB`
- 
- <kbd><img src="images/var-x_stack.png" height="90px"/></kbd>
-  
-1. ###varcont\_stack
+	prints `y----,` over `AAA` and, above that, `x---------,` over `AAA BBB`
+
+	<kbd><img src="images/var-x_stack.png" height="90px"/></kbd>
+
+8. **varcont\_stack**
+
 	```
 	!varcont_stack(! !var-x_stack! AAA !var-x_stack)! BBB !varcont_stack)!
 	```
- prints `x----,` over `AAA` and, over that, prints `-----------,` over `AAA BBB`
- 
- <kbd><img src="images/varcont_stack-and-chord.png" height="100px"/></kbd>
+	prints `x----,` over `AAA` and, over that, prints `-----------,` over `AAA BBB`
+
+	<kbd><img src="images/varcont_stack-and-chord.png" height="100px"/></kbd>
 
 
 
@@ -122,14 +122,14 @@ markers. Use the included `hbv-deco-chords.fmt` to get around this** - include t
 	```
 	!var..._stack(! y0 "X" ... !var..._stack)!
 	```
-	
- with
- 
- 	```
+
+	with
+
+	```
 	!var..._stack(! y0 !X! y0 ... !var..._stack)!
 	```
-	
- The first line of `bayard-variations.fmt` imports `hbv-deco-chords.fmt`, commented out. The easiest way to add `!chord!` support, if you don't already have a base `.fmt` file to import both files into, is to download both `.fmt`s, put them in the same folder, and uncomment that first line of `bayard-variations.fmt`.
+
+	The first line of `bayard-variations.fmt` imports `hbv-deco-chords.fmt`, commented out. The easiest way to add `!chord!` support, if you don't already have a base `.fmt` file to import both files into, is to download both `.fmt`s, put them in the same folder, and uncomment that first line of `bayard-variations.fmt`.
 	
 - I recommend always putting a `y0` after the opening deco of a long decoration,
 e.g. after `!var-x(!`. It's sometimes a good idea to put one after the closing
@@ -141,14 +141,12 @@ I use Monaco 9 for the label and a thin 60%-black dashed line
 
 -	The font is defined before every occurrence of the postscript command `show`
 -	The thickness of the line is defined before every `SLW` (abcm2ps shorthand for
-	the postscript command `setlinewidth`) (default: 0.5)
--	The darkness of the line is defined before every non-zero `setgray` (default: 0.6)
--	The dash is defined before every non-`[]` `setdash` (default: [3 5], which is 3px
+	the postscript command `setlinewidth`) (default: `0.5`)
+-	The darkness of the line is defined before every non-zero `setgray` (default: `0.6`)
+-	The dash is defined before every non-`[]` `setdash` (default: `[3 5]`, which is 3px
 	of line followed by 5px of space)
 
 The line could be made e.g. solid and black by commenting out all `setdash` and `setgray`.
-
-
 
 ## Included decorations
 
@@ -197,7 +195,6 @@ Special:
 
 - `var-first` decoration for a first-time-through variation
 - `var-last` decoration for a last-time-through variation
-
 
 If that doesn't meet your needs, you can always
 
@@ -314,7 +311,10 @@ I'll mention one bug in particular: sometimes the decos may draw below the staff
 
 &nbsp;
 
-
 ## License
 
-**bayard-variations** is licensed under the MIT License, with the following additional request: if you make use of it in any publication, commercial or otherwise, let the author know: oletswrite@gmail.com. For commercial projects, please credit the author as well.
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:cc="http://creativecommons.org/ns#" class="license-text"><a rel="cc:attributionURL" property="dct:title" href="https://www.github.com/olets/git-replay">bayard-variations</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.github.com/olets">Henry Bley-Vroman</a> is licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> with a human rights condition from <a href="https://firstdonoharm.dev/version/2/1/license.html">Hippocratic License 2.1</a>. Persons interested in using or adapting this work for commercial purposes should contact the author.</p>
+
+<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" /><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" />
+
+For the full text of the license, see the [LICENSE](LICENSE) file.
